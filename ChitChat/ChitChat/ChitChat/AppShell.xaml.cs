@@ -1,5 +1,4 @@
-﻿using ChitChat.ViewModels;
-using ChitChat.Views;
+﻿using ChitChat.Views;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;

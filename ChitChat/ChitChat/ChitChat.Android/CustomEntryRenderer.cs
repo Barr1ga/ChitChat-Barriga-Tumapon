@@ -33,7 +33,7 @@ namespace ChitChat.Droid
 
                 //this line sets the bordercolor
                 gd.SetCornerRadius(30f);
-                gd.SetStroke(2, Android.Graphics.Color.Gray);
+                /*gd.SetStroke(2, Android.Graphics.Color.Gray);*/
                 Control.SetBackgroundColor(global::Android.Graphics.Color.White);
                 Control.SetBackground(gd);
                 Control.SetPadding(30, Control.PaddingTop, Control.PaddingRight, Control.PaddingBottom);

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:ChitChat;assembly=ChitChat"
+             mc:Ignorable="d"
+             x:Class="ChitChat.Views.LoginPage"
+             BackgroundColor="#fff"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout Padding="20,20,20,20" VerticalOptions="End">
+            <Label 
+                Text="Login" 
+                FontAttributes="Bold" 
+                FontSize="40" 
+                Margin="0,5,0,10" 
+                TextColor="Black">
+            </Label>
+            <Entry 
+                x:Name="Email"  
+                Placeholder="Email Address">
+            </Entry>
+            <Grid Margin="0,5,0,5">
+                <Entry 
+                    Margin="0,5,0,5"
+                    x:Name="Password"
+                    Placeholder="Password"
+                    IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}">
+                </Entry>
+
+                <ImageButton 
+                    VerticalOptions="Center"
+                    HeightRequest="20"
+                    HorizontalOptions="End"
+                    Margin="0,0,10,0"
+                    Source="ic_eye_hide">
+                    <ImageButton.Triggers>
+                        <EventTrigger Event="Clicked">
+                            <local:TogglePassword 
+                                ShowIcon="ic_eye"
+                                HideIcon="ic_eye_hide"
+                                x:Name="ShowPasswordActualTrigger"/>
+                        </EventTrigger>
+                    </ImageButton.Triggers>
+                </ImageButton>
+            </Grid>
+
+            <Label HorizontalOptions="End">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Forgot Password?" FontAttributes="Bold" TextColor="#8c52ff"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SignupClicked" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button 
+                BackgroundColor="#8c52ff"
+                TextColor="#fff"
+                Margin="0,10,0,5"
+                VerticalOptions="Center" 
+                Text="Login" 
+                CornerRadius="10"
+                Clicked="LoginClicked">
+            </Button>
+
+            <Label HorizontalTextAlignment="Center" Text="OR"></Label>
+
+            <Button 
+                BackgroundColor="WhiteSmoke"
+                TextColor="#545454"
+                Margin="0,10,0,5"
+                VerticalOptions="Center" 
+                Text="Login with Google" 
+                CornerRadius="10"
+                Clicked="LoginClicked">
+            </Button>
+
+            <Button 
+                BackgroundColor="WhiteSmoke"
+                TextColor="#545454"
+                Margin="0,5,0,20"
+                VerticalOptions="Center" 
+                Text="Login with Facebook" 
+                CornerRadius="10"
+                Clicked="LoginClicked">
+            </Button>
+
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Don't have an account?"></Span>
+                        <Span Text=" Sign up" FontAttributes="Bold" TextColor="#8c52ff"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SignupClicked" />
+                </Label.GestureRecognizers>
+            </Label> 
+                
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

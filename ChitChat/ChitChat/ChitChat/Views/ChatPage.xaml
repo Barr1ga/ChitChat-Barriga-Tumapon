@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChitChat.Views.ChatPage">
+    <ContentPage.Content>
+            <StackLayout>
+            <Frame 
+                BorderColor="Black" 
+                CornerRadius="5" 
+                HasShadow="True" 
+                Padding="8">
+                <!--Margin="10 20 10 20" -->
+                <Entry Placeholder="Search User" 
+                   PlaceholderColor="DimGray"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   ClearButtonVisibility="WhileEditing"
+                   Keyboard="Email"/>
+            </Frame>
+            <Label Text="You have no contacts as of the moment" 
+                       FontSize="Medium" 
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"/>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

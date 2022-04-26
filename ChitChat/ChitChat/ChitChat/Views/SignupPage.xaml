@@ -8,8 +8,12 @@
         x:Class="ChitChat.Views.SignupPage"
         BackgroundColor="#fff"
         Shell.NavBarIsVisible="False"
+        Shell.FlyoutBehavior="Disabled"
         Shell.TabBarIsVisible="False">
-        <ContentPage.Content>
+
+
+        
+    <ContentPage.Content>
         <StackLayout Padding="20,20,20,20" VerticalOptions="End">
             <Label 
                 Text="Sign up" 
@@ -29,6 +33,7 @@
                 <Entry 
                 x:Name="Username"  
                 FontSize="16"
+                    Text=""
                 Focused="UsernameFocused"
                 Placeholder="Username">
                 </Entry>
@@ -45,6 +50,7 @@
                 x:Name="Email"  
                 FontSize="16"
                 Focused="EmailFocused"
+                Text=""
                 Placeholder="Email Address">
                 </Entry>
             </Frame>
@@ -61,6 +67,7 @@
                     x:Name="Password"
                     Placeholder="Password"
                     FontSize="16"
+                        Text=""
                     Focused="PasswordFocused"
                     IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}">
                     </Entry>
@@ -95,6 +102,7 @@
                     x:Name="ConfirmPassword"
                     Focused="ConfirmPasswordFocused"
                     FontSize="16"
+                        Text=""
                     Placeholder="Confirm Password"
                     IsPassword="{Binding Source={x:Reference ShowConfirmPasswordActualTrigger}, Path=HidePassword}">
                     </Entry>

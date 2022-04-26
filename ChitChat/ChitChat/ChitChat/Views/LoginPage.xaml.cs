@@ -27,7 +27,7 @@ namespace ChitChat.Views
             PasswordFrame.BorderColor = Color.FromHex("#cfcfcf");
         }
 
-        private void LoginClicked(object sender, EventArgs e)
+        private async void LoginClicked(object sender, EventArgs e)
         {
             var email = Email.Text;
             var password = Password.Text;
@@ -36,21 +36,21 @@ namespace ChitChat.Views
             {
                 PasswordFrame.BorderColor = Color.Red;
                 EmailFrame.BorderColor = Color.Red;
-                DisplayAlert("Login Failed", "Your email or password is missing. Please try again.", "OK");
+                await DisplayAlert("Login Failed", "Your email or password is missing. Please try again.", "OK");
                 return;
             }
 
             if (email == "")
             {
                 EmailFrame.BorderColor = Color.Red;
-                DisplayAlert("Login Failed", "Your email is missing. Please try again.", "OK");
+                await DisplayAlert("Login Failed", "Your email is missing. Please try again.", "OK");
                 return;
             }
 
             if (password == "")
             {
                 PasswordFrame.BorderColor = Color.Red;
-                DisplayAlert("Login Failed", "Your password is missing. Please try again.", "OK");
+                await DisplayAlert("Login Failed", "Your password is missing. Please try again.", "OK");
                 return;
             }
 
@@ -67,7 +67,7 @@ namespace ChitChat.Views
             {
                 PasswordFrame.BorderColor = Color.Red;
                 EmailFrame.BorderColor = Color.Red;
-                DisplayAlert("Login Failed", "Your email or password is incorrect. Please try again.", "OK");
+                await DisplayAlert("Login Failed", "Your email or password is incorrect. Please try again.", "OK");
                 return;
             }
 

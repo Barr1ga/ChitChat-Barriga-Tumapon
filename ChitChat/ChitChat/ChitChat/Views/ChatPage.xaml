@@ -32,21 +32,23 @@
                 -->
 
             <!--Display contacts-->
-            <ListView x:Name="contactView" 
-                      HeightRequest="55" 
+            <ScrollView>
+                <ListView x:Name="contactView" 
+                      HeightRequest="610" 
                       SeparatorColor="DarkGray" 
                       Scale="0.96"
                       SelectionMode="None"
                       ItemSelected="ContactView_ItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Name}"
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}"
                                    TextColor="Black"
                                    Detail ="{Binding Email}"
                                    DetailColor="#8c52ff"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
 
         </StackLayout>
     </ContentPage.Content>

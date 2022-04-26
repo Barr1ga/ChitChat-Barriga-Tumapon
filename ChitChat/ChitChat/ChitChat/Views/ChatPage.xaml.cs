@@ -14,6 +14,11 @@ namespace ChitChat.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChatPage : ContentPage
     {
+
+        private List<ContactInfo> userList = new List<ContactInfo>()
+        {
+
+        };
         private List<ContactInfo> contactList = new List<ContactInfo>()
         {
             new ContactInfo { Name = "Chiz Beloy", Email = "raychrisbelarmino@gmail.com" },
@@ -30,15 +35,15 @@ namespace ChitChat.Views
             //contactView.ItemsSource = contactList.Where(s => s.Email.Contains(e.NewTextValue));
        // }
 
-        private void SearchPressed(object sender, System.EventArgs e)
+        private async void SearchPressed(object sender, System.EventArgs e)
         {
-            if ((contactView.ItemsSource = contactList.Where(s => s.Email.Contains(ContactsSearchBar.Text))) != null)
+            if ((contactView.ItemsSource = userList.Where(s => s.Email.Contains(ContactsSearchBar.Text))) != null)
             {
                 contactView.ItemsSource = contactList.Where(s => s.Email.Contains(ContactsSearchBar.Text));
             }
             else
             {
-                DisplayAlert(" ", "User not found.", "OKAY");
+                await DisplayAlert(" ", "User not found.", "OK");
             }
             
         }

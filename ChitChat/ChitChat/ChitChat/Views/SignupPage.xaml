@@ -8,6 +8,7 @@
         x:Class="ChitChat.Views.SignupPage"
         BackgroundColor="#fff"
         Shell.NavBarIsVisible="False"
+        Shell.FlyoutBehavior="Disabled"
         Shell.TabBarIsVisible="False">
 
 

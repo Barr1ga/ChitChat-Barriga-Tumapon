@@ -14,11 +14,14 @@
                 HeightRequest="55"
                 HasShadow="False">
                 <SearchBar 
+                   x:Name="ContactsSearchBar"
                    Placeholder="Search User Email" 
                    PlaceholderColor="DimGray"
                    TextColor="Black"
                    FontSize="Medium"
-                   />
+                    SearchButtonPressed="SearchPressed"/>
+                   <!--TextChanged="SearchBar_TextChanged"-->
+                   
             </Frame>
                 
             <!--Display if no contacts  

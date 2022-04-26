@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChitChat.Views.ChatPage">
+             x:Class="ChitChat.Views.ChatPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             >
     <ContentPage.Content>
             <StackLayout>
             <Frame 
@@ -35,11 +37,10 @@
                       SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ImageCell Text="{Binding Name}"
+                        <TextCell Text="{Binding Name}"
                                    TextColor="Black"
                                    Detail ="{Binding Email}"
-                                   DetailColor="#8c52ff"
-                                   ImageSource="{Binding Image}"/>
+                                   DetailColor="#8c52ff"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

@@ -19,8 +19,8 @@ namespace ChitChat.Views
             InitializeComponent();
             List<ContactInfo> contactList = new List<ContactInfo>
             {
-                new ContactInfo{Name = "Chiz Beloy", Email = "raychrisbelarmino@gmail.com", Image = "@drawable/chatimg.png"},
-                new ContactInfo{Name = "Ray Beloy", Email = "raychrisbelarmino@gmail.com", Image = "@drawable/chatimg.png"}
+                new ContactInfo{Name = "Chiz Beloy", Email = "raychrisbelarmino@gmail.com"},
+                new ContactInfo{Name = "Ray Beloy", Email = "raychrisbelarmino@gmail.com"}
             };
             contactView.ItemsSource = contactList;
         }

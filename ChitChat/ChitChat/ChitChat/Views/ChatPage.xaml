@@ -6,21 +6,44 @@
             <StackLayout>
             <Frame 
                 BorderColor="Black" 
-                CornerRadius="5" 
-                HasShadow="True" 
-                Padding="8">
-                <!--Margin="10 20 10 20" -->
-                <Entry Placeholder="Search User" 
+                CornerRadius="10" 
+                Padding="0"
+                Margin="10, 10, 10, 0"
+                BackgroundColor="LightGray"
+                HeightRequest="55"
+                HasShadow="False">
+                <SearchBar 
+                   Placeholder="Search User Email" 
                    PlaceholderColor="DimGray"
                    TextColor="Black"
                    FontSize="Medium"
-                   ClearButtonVisibility="WhileEditing"
-                   Keyboard="Email"/>
+                   />
             </Frame>
+                
+            <!--Display if no contacts  
             <Label Text="You have no contacts as of the moment" 
-                       FontSize="Medium" 
-                       HorizontalTextAlignment="Center"
-                       TextColor="Black"/>
-            </StackLayout>
+                   FontSize="Medium" 
+                   HorizontalTextAlignment="Center"
+                   TextColor="Black"/>
+                -->
+
+            <!--Display contacts-->
+            <ListView x:Name="contactView" 
+                      HeightRequest="55" 
+                      SeparatorColor="DarkGray" 
+                      Scale="0.96"
+                      SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell Text="{Binding Name}"
+                                   TextColor="Black"
+                                   Detail ="{Binding Email}"
+                                   DetailColor="#8c52ff"
+                                   ImageSource="{Binding Image}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

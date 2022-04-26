@@ -11,8 +11,9 @@
                 WidthRequest="170" 
                 HeightRequest="170" 
                 HorizontalOptions="Center" 
-                VerticalOptions="Center">
-                <!--Margin="40 0 5 0"-->
+                VerticalOptions="Center"
+                Margin="0, 40, 0, 20">
+                
                 <Ellipse WidthRequest="170" 
                          HeightRequest="170" 
                          x:Name="outerRing" 
@@ -21,6 +22,7 @@
                          HorizontalOptions="CenterAndExpand" 
                          VerticalOptions="CenterAndExpand">
                 </Ellipse>
+                
                 <Ellipse WidthRequest="150" 
                          HeightRequest="150" 
                          x:Name="innerRing" 
@@ -30,6 +32,7 @@
                          VerticalOptions="CenterAndExpand" 
                          Scale="1.06">
                 </Ellipse>
+
                 <controls:CircleImage Source="@drawable/profile_picture.jpg" 
                                       WidthRequest="140" 
                                       HeightRequest="140" 
@@ -37,7 +40,6 @@
                                       VerticalOptions="Center" 
                                       Scale="1.04">
                 </controls:CircleImage>
-                
             </Grid>
             <Label Text="Horeb Barriga" 
                    HorizontalOptions="Center" 

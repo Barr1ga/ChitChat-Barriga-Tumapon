@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChitChat.Views.ChatPage">
+             x:Class="ChitChat.Views.ChatPage"
+             >
     <ContentPage.Content>
             <StackLayout>
             <Frame 
@@ -13,11 +14,14 @@
                 HeightRequest="55"
                 HasShadow="False">
                 <SearchBar 
+                   x:Name="ContactsSearchBar"
                    Placeholder="Search User Email" 
                    PlaceholderColor="DimGray"
                    TextColor="Black"
                    FontSize="Medium"
-                   />
+                    SearchButtonPressed="SearchPressed"/>
+                   <!--TextChanged="SearchBar_TextChanged"-->
+                   
             </Frame>
                 
             <!--Display if no contacts  
@@ -32,14 +36,14 @@
                       HeightRequest="55" 
                       SeparatorColor="DarkGray" 
                       Scale="0.96"
-                      SelectionMode="None">
+                      SelectionMode="None"
+                      ItemSelected="ContactView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ImageCell Text="{Binding Name}"
+                        <TextCell Text="{Binding Name}"
                                    TextColor="Black"
                                    Detail ="{Binding Email}"
-                                   DetailColor="#8c52ff"
-                                   ImageSource="{Binding Image}"/>
+                                   DetailColor="#8c52ff"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

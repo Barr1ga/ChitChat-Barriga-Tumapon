@@ -25,10 +25,10 @@ namespace ChitChat.Views
             contactView.ItemsSource = contactList;
         }
  
-        async void ContactView_ItemSelected(object sender, ItemTappedEventArgs e)
+       async void ContactView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var contact = e.Item as ContactInfo;
-            await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?name={contact.Name}");
+            var contact = e.SelectedItem as ContactInfo;
+            await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}");
         }
     }
 }

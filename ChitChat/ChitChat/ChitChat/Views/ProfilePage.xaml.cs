@@ -18,7 +18,7 @@ namespace ChitChat.Views
 
         private async void LogoutClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"/{nameof(LoginPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
     }
 }

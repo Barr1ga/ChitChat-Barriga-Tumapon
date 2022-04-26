@@ -86,7 +86,7 @@ namespace ChitChat.Views
                 DisplayAlert("Sign up Failed", "This email already exists. Please try again.", "OK");
                 return;
             }*/
-
+            DisplayAlert("Success", "Sign up successful. Verification email sent.", "OK");
             LoginProceed();
         }
 
@@ -97,7 +97,7 @@ namespace ChitChat.Views
 
         private async void LoginClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            await Shell.Current.GoToAsync($"/{nameof(LoginPage)}");
         }
         
     }

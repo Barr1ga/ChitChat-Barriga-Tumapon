@@ -18,7 +18,7 @@
                          HeightRequest="170" 
                          x:Name="outerRing" 
                          StrokeThickness="6" 
-                         Stroke="#ffed24" 
+                         Stroke="#e6e9eb" 
                          HorizontalOptions="CenterAndExpand" 
                          VerticalOptions="CenterAndExpand">
                 </Ellipse>

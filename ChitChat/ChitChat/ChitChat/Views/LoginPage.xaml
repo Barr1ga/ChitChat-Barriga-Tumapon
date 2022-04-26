@@ -7,20 +7,21 @@
              mc:Ignorable="d"
              x:Class="ChitChat.Views.LoginPage"
              BackgroundColor="#fff"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout Padding="20,20,20,20" VerticalOptions="End">
             <Label 
                 Text="Login" 
                 FontAttributes="Bold" 
                 FontSize="40" 
-                Margin="0,5,0,10" 
+                Margin="0,5,0,20" 
                 
                 TextColor="Black">
             </Label>
             <Frame 
                 x:Name="EmailFrame"
-                BorderColor="#cfcfcf" 
+                BorderColor="#e6e9eb" 
                 CornerRadius="10" 
                 HeightRequest="55"
                 HasShadow="False"
@@ -36,7 +37,7 @@
             <Grid Margin="0,2.5,0,2.5">
                 <Frame 
                 x:Name="PasswordFrame"
-                BorderColor="#cfcfcf" 
+                BorderColor="#e6e9eb" 
                 CornerRadius="10" 
                 HasShadow="False"
                 HeightRequest="55"
@@ -75,44 +76,67 @@
                     </FormattedString>
                 </Label.FormattedText>
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="SignupClicked" />
+                    <TapGestureRecognizer Tapped="ForgotClicked" />
                 </Label.GestureRecognizers>
             </Label>
 
             <Button 
                 BackgroundColor="#8c52ff"
                 TextColor="#fff"
+                FontAttributes="Bold" 
                 Margin="0,5,0,5"
                 HeightRequest="55"
                 VerticalOptions="Center" 
                 Text="Login" 
                 CornerRadius="10"
+                TextTransform="None"
                 Clicked="LoginClicked">
             </Button>
 
             <Label HorizontalTextAlignment="Center" Text="OR"></Label>
 
-            <Button 
-                BackgroundColor="WhiteSmoke"
+
+            <Grid Margin="0,2.5,0,2.5">
+                <Button 
+                BackgroundColor="#e6e9eb"
                 TextColor="#545454"
                 Margin="0,5,0,2.5"
                 HeightRequest="55"
                 VerticalOptions="Center" 
                 Text="Login with Google" 
                 CornerRadius="10"
+                TextTransform="None"
                 Clicked="LoginClicked">
-            </Button>
+                </Button>
+                <ImageButton 
+                    VerticalOptions="Center"
+                    HeightRequest="20"
+                    HorizontalOptions="Start"
+                    Margin="10,5,0,0"
+                    Source="ic_google">
+                </ImageButton>
+            </Grid>
 
-            <Button 
-                BackgroundColor="WhiteSmoke"
+            <Grid Margin="0,2.5,0,30">
+                <Button 
+                BackgroundColor="#e6e9eb"
                 TextColor="#545454"
-                Margin="0,5,0,20"
+                Margin="0,5,0,2.5"
                 HeightRequest="55"
                 VerticalOptions="Center" 
                 Text="Login with Facebook" 
                 CornerRadius="10"
+                TextTransform="None"
                 Clicked="LoginClicked">
-            </Button>
+                </Button>
+                <ImageButton 
+                    VerticalOptions="Center"
+                    HeightRequest="20"
+                    HorizontalOptions="Start"
+                    Margin="10,5,0,0"
+                    Source="ic_facebook">
+                </ImageButton>
+            </Grid>
 
             <Label HorizontalOptions="Center">
                 <Label.FormattedText>

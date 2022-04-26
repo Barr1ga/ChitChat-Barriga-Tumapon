@@ -1,5 +1,4 @@
-﻿using Android.Graphics.Drawables;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +27,6 @@ namespace ChitChat.Views
             PasswordFrame.BorderColor = Color.FromHex("#cfcfcf");
         }
 
-
         private void LoginClicked(object sender, EventArgs e)
         {
             var email = Email.Text;
@@ -56,6 +54,15 @@ namespace ChitChat.Views
                 return;
             }
 
+            /*If not verified*/
+            /*if (email)
+            {
+                PasswordFrame.BorderColor = Color.Red;
+                EmailFrame.BorderColor = Color.Red;
+                DisplayAlert("Login Failed", "Your email is not verified. We have sent another verification email.", "OK");
+                return;
+            }*/
+
             if (email != "admin" && password != "123")
             {
                 PasswordFrame.BorderColor = Color.Red;
@@ -77,6 +84,9 @@ namespace ChitChat.Views
             await Shell.Current.GoToAsync($"{nameof(SignupPage)}");
         }
 
-
+        private async void ForgotClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"{nameof(ForgotPasswordPage)}");
+        }
     }
 }

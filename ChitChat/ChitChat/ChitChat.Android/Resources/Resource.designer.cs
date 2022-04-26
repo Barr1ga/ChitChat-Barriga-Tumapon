@@ -14,7 +14,7 @@ namespace ChitChat.Droid
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.2.4.160")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.2.0.155")]
 	public partial class Resource
 	{
 		
@@ -16516,26 +16516,26 @@ namespace ChitChat.Droid
 			// aapt resource value: 0x7F07005E
 			public const int btn_radio_on_to_off_mtrl_animation = 2131165278;
 			
-			// aapt resource value: 0x7F070061
-			public const int chatimg = 2131165281;
+			// aapt resource value: 0x7F070060
+			public const int chatimg = 2131165280;
 			
 			// aapt resource value: 0x7F07005F
 			public const int chat_icon = 2131165279;
 			
-			// aapt resource value: 0x7F070060
-			public const int chat_pic = 2131165280;
+			// aapt resource value: 0x7F070061
+			public const int design_fab_background = 2131165281;
 			
 			// aapt resource value: 0x7F070062
-			public const int design_fab_background = 2131165282;
+			public const int design_ic_visibility = 2131165282;
 			
 			// aapt resource value: 0x7F070063
-			public const int design_ic_visibility = 2131165283;
+			public const int design_ic_visibility_off = 2131165283;
 			
 			// aapt resource value: 0x7F070064
-			public const int design_ic_visibility_off = 2131165284;
+			public const int design_password_eye = 2131165284;
 			
 			// aapt resource value: 0x7F070065
-			public const int design_password_eye = 2131165285;
+			public const int design_snackbar_background = 2131165285;
 			
 			// aapt resource value: 0x7F07006F
 			public const int icon_about = 2131165295;
@@ -16543,17 +16543,17 @@ namespace ChitChat.Droid
 			// aapt resource value: 0x7F070070
 			public const int icon_feed = 2131165296;
 			
-			// aapt resource value: 0x7F070071
-			public const int icon_feed = 2131165297;
+			// aapt resource value: 0x7F070066
+			public const int ic_arrow_down_24dp = 2131165286;
 			
 			// aapt resource value: 0x7F070067
-			public const int ic_arrow_down_24dp = 2131165287;
+			public const int ic_clock_black_24dp = 2131165287;
 			
 			// aapt resource value: 0x7F070068
-			public const int ic_clock_black_24dp = 2131165288;
+			public const int ic_eye = 2131165288;
 			
 			// aapt resource value: 0x7F070069
-			public const int ic_eye = 2131165289;
+			public const int ic_eye_hide = 2131165289;
 			
 			// aapt resource value: 0x7F07006A
 			public const int ic_keyboard_black_24dp = 2131165290;

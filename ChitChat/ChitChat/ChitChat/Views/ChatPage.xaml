@@ -34,7 +34,8 @@
                       HeightRequest="55" 
                       SeparatorColor="DarkGray" 
                       Scale="0.96"
-                      SelectionMode="None">
+                      SelectionMode="None"
+                      ItemSelected="ContactView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Name}"

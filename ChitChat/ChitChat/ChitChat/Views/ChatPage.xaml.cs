@@ -20,9 +20,15 @@ namespace ChitChat.Views
             List<ContactInfo> contactList = new List<ContactInfo>
             {
                 new ContactInfo{Name = "Chiz Beloy", Email = "raychrisbelarmino@gmail.com"},
-                new ContactInfo{Name = "Ray Beloy", Email = "raychrisbelarmino@gmail.com"}
+                new ContactInfo{Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com"}
             };
             contactView.ItemsSource = contactList;
+        }
+ 
+        async void ContactView_ItemSelected(object sender, ItemTappedEventArgs e)
+        {
+            var contact = e.Item as ContactInfo;
+            await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?name={contact.Name}");
         }
     }
 }

@@ -19,12 +19,12 @@ namespace ChitChat.Views
 
         private void EmailFocused(object sender, EventArgs e)
         {
-            EmailFrame.BorderColor = Color.FromHex("#cfcfcf");
+            EmailFrame.BorderColor = Color.FromHex("#d8dae3");
         }
 
         private void PasswordFocused(object sender, EventArgs e)
         {
-            PasswordFrame.BorderColor = Color.FromHex("#cfcfcf");
+            PasswordFrame.BorderColor = Color.FromHex("#d8dae3");
         }
 
         private async void LoginClicked(object sender, EventArgs e)

@@ -24,5 +24,16 @@ namespace ChitChat.Views
             get => _contactName;
             set => Header.Text = value;
         }
+
+        private void ToggleSendButton(object sender, System.EventArgs e)
+        {
+            if(Message.Text != "")
+            {
+                SendButton.Source = "ic_send";
+            }else
+            {
+                SendButton.Source = "ic_send_disabled";
+            }
+        }
     }
 }

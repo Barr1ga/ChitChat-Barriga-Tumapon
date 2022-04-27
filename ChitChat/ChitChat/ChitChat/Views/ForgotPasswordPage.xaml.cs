@@ -22,7 +22,7 @@ namespace ChitChat.Views
 
         private void EmailFocused(object sender, EventArgs e)
         {
-            EmailFrame.BorderColor = Color.FromHex("#cfcfcf");
+            EmailFrame.BorderColor = Color.FromHex("#d8dae3");
         }
 
         private async void SendResetClicked(object sender, EventArgs e)

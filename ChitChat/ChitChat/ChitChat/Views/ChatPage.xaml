@@ -4,38 +4,37 @@
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="ChitChat.Views.ChatPage"
              Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False"
              >
-    <Shell.TitleView>
-        <Grid Padding="5,0,0,0" ColumnSpacing="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <controls:CircleImage Source="@drawable/profile_picture.jpg" 
+    
+    <ContentPage.Content>
+        <StackLayout Padding="20,15,20,0" >
+            <Grid Padding="0,0,0,5" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <controls:CircleImage Source="@drawable/profile_picture.jpg" 
                                       WidthRequest="30" 
                                       HeightRequest="30" 
                                       HorizontalOptions="Start"
                                       VerticalOptions="Center" 
                                       Grid.Column="0"
                                       Scale="1.04">
-            </controls:CircleImage>
-            <Label Text="Contacts"
-                   TextColor="#fff"
+                </controls:CircleImage>
+                <Label Text="Contacts"
+                   TextColor="Black"
                    FontAttributes="Bold"
                    Grid.Column="1"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
                    Margin="5, 0, 0, 0"
                    FontSize="18"></Label>
-        </Grid>
-    </Shell.TitleView>
-    
-    <ContentPage.Content>
-        <StackLayout Padding="20,15,20,20" >
+            </Grid>
             <Frame 
                 x:Name="EmailFrame"
-                BorderColor="#e6e9eb" 
-                CornerRadius="10" 
+                BorderColor="#d8dae3" 
+                CornerRadius="50" 
                 HeightRequest="45"
                 HasShadow="False"
                 Margin="0,2.5,0,2.5" 
@@ -44,12 +43,9 @@
                    x:Name="ContactsSearchBar"
                    Placeholder="Search Email" 
                    FontSize="16"
-                    
                    SearchButtonPressed="SearchPressed"/>
                    <!--TextChanged="SearchBar_TextChanged"-->
             </Frame>
-
-           
 
             <!--Display if no contacts  
             <Label Text="You have no contacts as of the moment" 
@@ -59,43 +55,43 @@
                 -->
 
             <!--Display contacts-->
-            
-            <ScrollView>
 
+            <ScrollView>
                 <ListView x:Name="contactView" 
-                      HeightRequest="600" 
-                      SeparatorColor="DarkGray" 
-                      Scale="0.99"
+                      SeparatorColor="#fff" 
+                      Scale="1"
                       SelectionMode="Single"
                       ItemSelected="ContactView_ItemSelected"
                       ItemTapped="ContactView_ItemTapped"
                       VerticalScrollBarVisibility="Never"
                       Visual="Material"
-                      HasUnevenRows="True"
-                      Background="Transparent">
+                      HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Margin="10,0,10,10">
-                                    <Frame BorderColor="Black" 
-                                           CornerRadius="10"
-                                           HasShadow="True"
-                                           Padding="0">
+                                <Grid Margin="0,0,0,0"> 
+                                    <Frame Padding="0,10,0,10">
                                         <StackLayout Orientation="Horizontal">
+                                            <Frame Padding="0"
+                                                   CornerRadius="500"
+                                                   Margin="1,1,10,1">
                                             <Image Source="@drawable/chatimg.png"
-                                                   WidthRequest="66"/>
+                                                   WidthRequest="55"
+                                                   Aspect="AspectFill"
+                                                   />
+                                            </Frame>
                                             <StackLayout VerticalOptions="Center" Orientation="Vertical">
                                                 <Label VerticalOptions="Center"
-                                                   FontSize="17"
+                                                   FontSize="16"
                                                    Text="{Binding Name}"
-                                                   TextColor="#8c52ff"
-                                                   Margin="0,12,5,0"/>
+                                                   TextColor="#000"
+                                                   Margin="0,5,0,0"/>
 
                                                 <Label VerticalOptions="Fill"
-                                                   FontSize="15"
+                                                   FontSize="14"
                                                    Text="{Binding Email}"
                                                    TextColor="Gray"
-                                                   Margin="0,0,0,16"/>
+                                                   Margin="0,0,0,5"/>
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>

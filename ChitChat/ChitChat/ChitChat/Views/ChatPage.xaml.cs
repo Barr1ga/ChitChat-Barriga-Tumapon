@@ -18,12 +18,16 @@ namespace ChitChat.Views
         
         private readonly  List<ContactInfo> contactList = new List<ContactInfo>()
         {
-            new ContactInfo { Name = "Chiz Beloy", Email = "raychrisbelarmino@gmail.com" },
-            new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" },
-            new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" },
-            new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" },
-            new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" },
-            new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" }
+            new ContactInfo { Name = "User_Sample_1", Email = "User_Sample_1@gmail.com" },
+            new ContactInfo { Name = "User_Sample_2", Email = "User_Sample_2@gmail.com" },
+            new ContactInfo { Name = "User_Sample_3", Email = "User_Sample_3@gmail.com" },
+            new ContactInfo { Name = "User_Sample_4", Email = "User_Sample_4@gmail.com" },
+            new ContactInfo { Name = "User_Sample_5", Email = "User_Sample_5@gmail.com" },
+            new ContactInfo { Name = "User_Sample_6", Email = "User_Sample_6@gmail.com" },
+            new ContactInfo { Name = "User_Sample_7", Email = "User_Sample_7@gmail.com" },
+            new ContactInfo { Name = "User_Sample_8", Email = "User_Sample_8@gmail.com" },
+            new ContactInfo { Name = "User_Sample_9", Email = "User_Sample_9@gmail.com" },
+            new ContactInfo { Name = "User_Sample_10", Email = "User_Sample10@gmail.com" }
         };
         public ChatPage()
         {
@@ -36,9 +40,15 @@ namespace ChitChat.Views
             await Shell.Current.GoToAsync($"{nameof(SearchResult)}?input={ContactsSearchBar.Text}");
         }
 
-        async void ContactView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ContactView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var contact = e.SelectedItem as ContactInfo;
+            var contact = ((ListView)sender).SelectedItem as ContactInfo;
+            if(contact == null)
+            {
+                return;
+            }
+
+            await DisplayAlert("error", contact.Name, "ok");
             await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?name={contact.Name}");
         }
         private void ContactView_ItemTapped(object sender, TappedEventArgs e)

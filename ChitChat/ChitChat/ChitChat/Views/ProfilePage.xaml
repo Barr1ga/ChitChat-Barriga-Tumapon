@@ -19,7 +19,7 @@
                          HeightRequest="175" 
                          x:Name="outerRing" 
                          StrokeThickness="7" 
-                         Stroke="#e6e9eb" 
+                         Stroke="#636370" 
                          
                          Scale=".7"
                          HorizontalOptions="CenterAndExpand" 
@@ -66,7 +66,7 @@
                 HeightRequest="45"
                 VerticalOptions="Center" 
                 Text="Log out" 
-                CornerRadius="10"
+                CornerRadius="50"
                 TextTransform="None"
                 Clicked="LogoutClicked" />
         </StackLayout>

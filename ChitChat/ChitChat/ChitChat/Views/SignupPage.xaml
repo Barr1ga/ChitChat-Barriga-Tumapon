@@ -15,6 +15,9 @@
         
     <ContentPage.Content>
         <StackLayout Padding="20,20,20,20" VerticalOptions="End">
+            <Image Source="drawable/sign_up.png"
+                   HeightRequest="110"
+                   Margin="0,0,0,20"></Image>
             <Label 
                 Text="Sign up" 
                 FontAttributes="Bold" 
@@ -24,8 +27,8 @@
             </Label>
             <Frame 
                 x:Name="UsernameFrame"
-                BorderColor="#e6e9eb" 
-                CornerRadius="10" 
+                BorderColor="#d8dae3" 
+                CornerRadius="50" 
                 HeightRequest="45"
                 HasShadow="False"
                 Margin="0,2.5,0,2.5"
@@ -40,8 +43,8 @@
             </Frame>
             <Frame 
                 x:Name="EmailFrame"
-                BorderColor="#e6e9eb" 
-                CornerRadius="10" 
+                BorderColor="#d8dae3" 
+                CornerRadius="50" 
                 HeightRequest="45"
                 HasShadow="False"
                 Margin="0,2.5,0,2.5"
@@ -57,8 +60,8 @@
             <Grid Margin="0,2.5,0,2.5">
                 <Frame 
                 x:Name="PasswordFrame"
-                BorderColor="#e6e9eb" 
-                CornerRadius="10" 
+                BorderColor="#d8dae3" 
+                CornerRadius="50" 
                 HeightRequest="45"
                 HasShadow="False"
                 Padding="0">
@@ -91,8 +94,8 @@
             <Grid Margin="0,5,0,5">
                 <Frame 
                 x:Name="ConfirmPasswordFrame"
-                BorderColor="#e6e9eb" 
-                CornerRadius="10" 
+                BorderColor="#d8dae3" 
+                CornerRadius="50" 
                 HeightRequest="45"
                 HasShadow="False"
                 Padding="0">
@@ -132,7 +135,7 @@
                 HeightRequest="45"
                 VerticalOptions="Center" 
                 Text="Sign up" 
-                CornerRadius="10"
+                CornerRadius="50"
                 Clicked="SignupClicked">
             </Button>
 
@@ -140,13 +143,13 @@
 
             <Grid Margin="0,2.5,0,2.5">
                 <Button 
-                BackgroundColor="#e6e9eb"
-                TextColor="#545454"
+                BackgroundColor="#edeefc"
+                TextColor="#636370"
                 Margin="0,5,0,2.5"
                 HeightRequest="45"
                 VerticalOptions="Center" 
                 Text="Login with Google" 
-                CornerRadius="10"
+                CornerRadius="50"
                 TextTransform="None"
                 Clicked="LoginClicked">
                 </Button>
@@ -161,13 +164,13 @@
 
             <Grid Margin="0,2.5,0,30">
                 <Button 
-                BackgroundColor="#e6e9eb"
-                TextColor="#545454"
+                BackgroundColor="#edeefc"
+                TextColor="#636370"
                 Margin="0,5,0,2.5"
                 HeightRequest="45"
                 VerticalOptions="Center" 
                 Text="Login with Facebook" 
-                CornerRadius="10"
+                CornerRadius="50"
                 TextTransform="None"
                 Clicked="LoginClicked">
                 </Button>

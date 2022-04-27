@@ -22,22 +22,22 @@ namespace ChitChat.Views
 
         private void UsernameFocused(object sender, EventArgs e)
         {
-            UsernameFrame.BorderColor = Color.FromHex("#cfcfcf");
+            UsernameFrame.BorderColor = Color.FromHex("#d8dae3");
         }
 
         private void EmailFocused(object sender, EventArgs e)
         {
-            EmailFrame.BorderColor = Color.FromHex("#cfcfcf");
+            EmailFrame.BorderColor = Color.FromHex("#d8dae3");
         }
 
         private void PasswordFocused(object sender, EventArgs e)
         {
-            PasswordFrame.BorderColor = Color.FromHex("#cfcfcf");
+            PasswordFrame.BorderColor = Color.FromHex("#d8dae3");
         }
 
         private void ConfirmPasswordFocused(object sender, EventArgs e)
         {
-            ConfirmPasswordFrame.BorderColor = Color.FromHex("#cfcfcf");
+            ConfirmPasswordFrame.BorderColor = Color.FromHex("#636370");
         }
 
         private async void SignupClicked(object sender, EventArgs e)

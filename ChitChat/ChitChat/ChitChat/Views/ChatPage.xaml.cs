@@ -35,7 +35,7 @@ namespace ChitChat.Views
         async void ContactView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var contact = e.SelectedItem as ContactInfo;
-            await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?name={contact.Name}");
+            await Shell.Current.GoToAsync($"{nameof(ConversationPage)}?name={contact.Name}");
         }
     }
 }

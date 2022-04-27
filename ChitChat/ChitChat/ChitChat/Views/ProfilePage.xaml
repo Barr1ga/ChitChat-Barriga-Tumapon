@@ -4,22 +4,24 @@
              x:Class="ChitChat.Views.ProfilePage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False"
              >
     <ContentPage.Content>
         <StackLayout Padding="20,20,20,20" >
-
             <Grid 
                 WidthRequest="170" 
                 HeightRequest="170" 
                 HorizontalOptions="Center" 
                 VerticalOptions="Center"
-                Margin="0, 40, 0, 20">
+                >
                 
-                <Ellipse WidthRequest="170" 
-                         HeightRequest="170" 
+                <Ellipse WidthRequest="175" 
+                         HeightRequest="175" 
                          x:Name="outerRing" 
-                         StrokeThickness="6" 
+                         StrokeThickness="7" 
                          Stroke="#e6e9eb" 
+                         
+                         Scale=".7"
                          HorizontalOptions="CenterAndExpand" 
                          VerticalOptions="CenterAndExpand">
                 </Ellipse>
@@ -31,12 +33,12 @@
                          Stroke="#8c52ff" 
                          HorizontalOptions="CenterAndExpand" 
                          VerticalOptions="CenterAndExpand" 
-                         Scale="1.06">
+                         Scale=".75">
                 </Ellipse>
 
                 <controls:CircleImage Source="@drawable/profile_picture.jpg" 
-                                      WidthRequest="140" 
-                                      HeightRequest="140" 
+                                      WidthRequest="100" 
+                                      HeightRequest="100" 
                                       HorizontalOptions="Center" 
                                       VerticalOptions="Center" 
                                       Scale="1.04">
@@ -47,21 +49,21 @@
                    VerticalOptions="Center" 
                    TextColor="Black" 
                    FontAttributes="Bold"
-                   FontSize="Large">
+                   FontSize="24">
             </Label>
             <Label Text="hor.barr1ga@gmail.com" 
                    HorizontalOptions="Center" 
                    VerticalOptions="Center" 
                    TextColor="DimGray" 
                    FontAttributes="Bold"
-                   FontSize="Medium">
+                   FontSize="16">
             </Label>
             <Button
                 BackgroundColor="#8c52ff"
                 TextColor="#fff"
                 FontAttributes="Bold" 
-                Margin="0,5,0,5"
-                HeightRequest="55"
+                Margin="0,15,0,5"
+                HeightRequest="45"
                 VerticalOptions="Center" 
                 Text="Log out" 
                 CornerRadius="10"

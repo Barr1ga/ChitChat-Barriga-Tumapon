@@ -25,7 +25,7 @@ namespace ChitChat.Views
             InitializeComponent();
 
 
-            if (userList.Where(s => s.Email.Equals(SearchInput)) != null)
+            if ((usersView.ItemsSource = userList.Where(s => s.Email.Contains(SearchInput))) != null)
             {
                 usersView.ItemsSource = userList.Where(s => s.Email.Contains(SearchInput));
             }
@@ -34,17 +34,24 @@ namespace ChitChat.Views
                 DisplayAlert("","User not found.", "OK");
             }
         }
-
         public string SearchInput
         {
             get => _searchInput;
-            set => usersView.ItemsSource = value;
+            set => SearchInput = value;
         }
-
 
         async void UsersView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            await DisplayAlert("A Possible Connection!", "Would you like to add {name}.", "No", "Yes");
+            var select = ((ListView)sender).SelectedItem as ContactInfo;
+            if(select == null)
+            {
+                return;
+            }
+            await DisplayAlert("Would you like to add", select.Name, "No", "Yes");
+        }
+        private void UsersView_ItemTapped(object sender, TappedEventArgs e)
+        {
+            ((ListView)sender).SelectedItem = null;
         }
     }
 

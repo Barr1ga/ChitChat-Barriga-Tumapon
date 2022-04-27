@@ -19,6 +19,10 @@ namespace ChitChat.Views
         private readonly  List<ContactInfo> contactList = new List<ContactInfo>()
         {
             new ContactInfo { Name = "Chiz Beloy", Email = "raychrisbelarmino@gmail.com" },
+            new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" },
+            new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" },
+            new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" },
+            new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" },
             new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" }
         };
         public ChatPage()
@@ -34,8 +38,16 @@ namespace ChitChat.Views
 
         async void ContactView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var contact = e.SelectedItem as ContactInfo;
+            var contact = ((ListView)sender).SelectedItem as ContactInfo;
+            if(contact == null)
+            {
+                return;
+            }
             await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?name={contact.Name}");
+        }
+        private void ContactView_ItemTapped(object sender, TappedEventArgs e)
+        {
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }

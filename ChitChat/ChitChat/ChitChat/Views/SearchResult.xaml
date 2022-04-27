@@ -11,17 +11,19 @@
                    HasShadow="False"
                    Padding="2, 2, 2, -2">
                 <ListView x:Name="usersView" 
-                      HeightRequest="50" 
+                      HeightRequest="67" 
                       SeparatorVisibility="None"
                       Scale="0.99"
                       SelectionMode="Single"
-                      ItemSelected="UsersView_ItemSelected">
+                      ItemSelected="UsersView_ItemSelected"
+                      ItemTapped="UsersView_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextCell Text="{Binding Name}"
-                                   TextColor="Black"
+                            <ImageCell Text="{Binding Name}"
+                                   TextColor="#8c52ff"
                                    Detail ="{Binding Email}"
-                                   DetailColor="#8c52ff"/>
+                                   DetailColor="Gray"
+                                   ImageSource="@drawable/chatimg.png"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

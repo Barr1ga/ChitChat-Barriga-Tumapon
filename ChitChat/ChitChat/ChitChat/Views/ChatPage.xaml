@@ -1,30 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="ChitChat.Views.ChatPage"
              Shell.FlyoutBehavior="Disabled"
              >
+    <Shell.TitleView>
+        <Grid Padding="5,0,0,0" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <controls:CircleImage Source="@drawable/profile_picture.jpg" 
+                                      WidthRequest="30" 
+                                      HeightRequest="30" 
+                                      HorizontalOptions="Start"
+                                      VerticalOptions="Center" 
+                                      Grid.Column="0"
+                                      Scale="1.04">
+            </controls:CircleImage>
+            <Label Text="Contacts"
+                   TextColor="#fff"
+                   FontAttributes="Bold"
+                   Grid.Column="1"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Margin="5, 0, 0, 0"
+                   FontSize="18"></Label>
+        </Grid>
+    </Shell.TitleView>
+    
     <ContentPage.Content>
-            <StackLayout>
+        <StackLayout Padding="20,15,20,20" >
             <Frame 
-                BorderColor="Black" 
+                x:Name="EmailFrame"
+                BorderColor="#e6e9eb" 
                 CornerRadius="10" 
-                Padding="0"
-                Margin="10, 10, 10, 0"
-                BackgroundColor="LightGray"
-                HeightRequest="55"
-                HasShadow="False">
+                HeightRequest="45"
+                HasShadow="False"
+                Margin="0,2.5,0,2.5" 
+                Padding="0">
                 <SearchBar 
                    x:Name="ContactsSearchBar"
-                   Placeholder="Search User Email" 
-                   PlaceholderColor="DimGray"
-                   TextColor="Black"
-                   FontSize="Medium"
-                    SearchButtonPressed="SearchPressed"/>
+                   Placeholder="Search Email" 
+                   FontSize="16"
+                    
+                   SearchButtonPressed="SearchPressed"/>
                    <!--TextChanged="SearchBar_TextChanged"-->
-                   
             </Frame>
-            <Label Text="Contacts" TextColor="Black" FontSize="Medium" Padding="10, 0, 0, 0"/>
+
+           
+
             <!--Display if no contacts  
             <Label Text="You have no contacts as of the moment" 
                    FontSize="Medium" 
@@ -37,7 +63,8 @@
             <ScrollView>
 
                 <ListView x:Name="contactView" 
-                      SeparatorVisibility="None"
+                      HeightRequest="600" 
+                      SeparatorColor="DarkGray" 
                       Scale="0.99"
                       SelectionMode="Single"
                       ItemSelected="ContactView_ItemSelected"

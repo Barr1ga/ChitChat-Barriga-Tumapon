@@ -15,11 +15,8 @@ namespace ChitChat.Views
     public partial class ChatPage : ContentPage
     {
 
-        private List<ContactInfo> userList = new List<ContactInfo>()
-        {
-
-        };
-        private List<ContactInfo> contactList = new List<ContactInfo>()
+        
+        private readonly  List<ContactInfo> contactList = new List<ContactInfo>()
         {
             new ContactInfo { Name = "Chiz Beloy", Email = "raychrisbelarmino@gmail.com" },
             new ContactInfo { Name = "Nikolai Tumapon", Email = "franztumapon13@gmail.com" }
@@ -29,29 +26,16 @@ namespace ChitChat.Views
             InitializeComponent();
             contactView.ItemsSource = contactList;
         }
- 
-        //private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-       // {
-            //contactView.ItemsSource = contactList.Where(s => s.Email.Contains(e.NewTextValue));
-       // }
 
         private async void SearchPressed(object sender, System.EventArgs e)
         {
-            if ((contactView.ItemsSource = userList.Where(s => s.Email.Contains(ContactsSearchBar.Text))) != null)
-            {
-                contactView.ItemsSource = contactList.Where(s => s.Email.Contains(ContactsSearchBar.Text));
-            }
-            else
-            {
-                await DisplayAlert(" ", "User not found.", "OK");
-            }
-            
+            await Shell.Current.GoToAsync($"{nameof(SearchResult)}?input={ContactsSearchBar.Text}");
         }
 
         async void ContactView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var contact = e.SelectedItem as ContactInfo;
-            await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}");
+            await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?name={contact.Name}");
         }
     }
 }

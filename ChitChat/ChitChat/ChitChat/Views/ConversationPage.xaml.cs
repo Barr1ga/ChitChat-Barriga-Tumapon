@@ -18,7 +18,6 @@ namespace ChitChat.Views
         public ConversationPage()
         {
             InitializeComponent();
-            BindingContext = new ContactInfo();
         }
         public string ContactName
         {

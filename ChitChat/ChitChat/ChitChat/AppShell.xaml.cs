@@ -16,6 +16,7 @@ namespace ChitChat
             Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
             Routing.RegisterRoute(nameof(ForgotPasswordPage), typeof(ForgotPasswordPage));
             Routing.RegisterRoute(nameof(ConversationPage), typeof(ConversationPage));
+            Routing.RegisterRoute(nameof(SearchResult), typeof(SearchResult));
         }
 
        

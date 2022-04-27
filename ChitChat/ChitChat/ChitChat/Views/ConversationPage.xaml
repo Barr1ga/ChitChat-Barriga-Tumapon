@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChitChat.Views.ConversationPage"
-             Shell.FlyoutBehavior="Disabled">
+             x:Class="ChitChat.Views.ConversationPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="Header"/>
+            <Label x:Name ="Header"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   BackgroundColor="LightGray"
+                   Padding="15,15,0,15"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

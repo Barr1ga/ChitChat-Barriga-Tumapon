@@ -24,7 +24,7 @@
                    <!--TextChanged="SearchBar_TextChanged"-->
                    
             </Frame>
-                
+            <Label Text="Contacts" TextColor="Black" FontSize="Medium" Padding="10, 0, 0, 0"/>
             <!--Display if no contacts  
             <Label Text="You have no contacts as of the moment" 
                    FontSize="Medium" 
@@ -33,12 +33,13 @@
                 -->
 
             <!--Display contacts-->
+            
             <ScrollView>
                 <ListView x:Name="contactView" 
-                      HeightRequest="610" 
+                      HeightRequest="600" 
                       SeparatorColor="DarkGray" 
-                      Scale="0.96"
-                      SelectionMode="None"
+                      Scale="0.99"
+                      SelectionMode="Single"
                       ItemSelected="ContactView_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>

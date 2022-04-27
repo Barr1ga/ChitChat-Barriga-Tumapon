@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChitChat.Views.SearchResult">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Frame BorderColor="Gray"
+                   CornerRadius="15"
+                   Margin="20, 20, 20, 20"
+                   HasShadow="False"
+                   Padding="2, 2, 2, -2">
+                <ListView x:Name="usersView" 
+                      HeightRequest="50" 
+                      SeparatorVisibility="None"
+                      Scale="0.99"
+                      SelectionMode="Single"
+                      ItemSelected="UsersView_ItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}"
+                                   TextColor="Black"
+                                   Detail ="{Binding Email}"
+                                   DetailColor="#8c52ff"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

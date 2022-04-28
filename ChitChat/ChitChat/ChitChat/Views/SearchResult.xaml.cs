@@ -17,13 +17,12 @@ namespace ChitChat.Views
         public string _searchInput;
         private readonly List<ContactInfo> userList = new List<ContactInfo>()
         {
-            new ContactInfo { Name = "Horeb", Email = "horeb@gmail.com" },
-            new ContactInfo { Name = "Van AJ", Email = "van@gmail.com" }
+            new ContactInfo { Username = "Horeb", Email = "horeb@gmail.com" },
+            new ContactInfo { Username = "Van AJ", Email = "van@gmail.com" }
         };
          public SearchResult()
         {
             InitializeComponent();
-
 
             if ((usersView.ItemsSource = userList.Where(s => s.Email.Contains(SearchInput))) != null)
             {
@@ -47,7 +46,7 @@ namespace ChitChat.Views
             {
                 return;
             }
-            await DisplayAlert("Would you like to add", select.Name, "No", "Yes");
+            await DisplayAlert("Would you like to add", select.Username, "No", "Yes");
         }
         private void UsersView_ItemTapped(object sender, TappedEventArgs e)
         {

@@ -11,17 +11,17 @@ using ChitChat.Models;
 namespace ChitChat.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    [QueryProperty("ContactName", "name")]
+    [QueryProperty("ContactUsername", "username")]
     public partial class ConversationPage : ContentPage
     {
-        public string _contactName;
+        public string _contactUsername;
         public ConversationPage()
         {
             InitializeComponent();
         }
-        public string ContactName
+        public string ContactUsername
         {
-            get => _contactName;
+            get => _contactUsername;
             set => Header.Text = value;
         }
 

@@ -8,14 +8,14 @@ namespace ChitChat.Models
     class ContactInfo : INotifyPropertyChanged
     {
 
-        public string _id
+        public string Id
         {
             get
-            { return _id; }
+            { return Id; }
             set
             {
-                _id = value;
-                OnPropertyChanged(nameof(_id));
+                Id = value;
+                OnPropertyChanged(nameof(Id));
             }
         }
 

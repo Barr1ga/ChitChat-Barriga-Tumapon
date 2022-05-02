@@ -14,20 +14,20 @@ namespace ChitChat.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChatPage : ContentPage
     {
-        private List<ContactInfo> Init_List()
+        private List<ContactModel> Init_List()
         {         
-                List<ContactInfo> contactList = new List<ContactInfo>()
-                {
-                    new ContactInfo { Username = "User_Sample_1", Email = "User_Sample_1@gmail.com" },
-                    new ContactInfo { Username = "User_Sample_2", Email = "User_Sample_2@gmail.com" },
-                    new ContactInfo { Username = "User_Sample_3", Email = "User_Sample_3@gmail.com" },
-                    new ContactInfo { Username = "User_Sample_4", Email = "User_Sample_4@gmail.com" },
-                    new ContactInfo { Username = "User_Sample_5", Email = "User_Sample_5@gmail.com" },
-                    new ContactInfo { Username = "User_Sample_6", Email = "User_Sample_6@gmail.com" },
-                    new ContactInfo { Username = "User_Sample_7", Email = "User_Sample_7@gmail.com" },
-                    new ContactInfo { Username = "User_Sample_8", Email = "User_Sample_8@gmail.com" },
-                    new ContactInfo { Username = "User_Sample_9", Email = "User_Sample_9@gmail.com" },
-                    new ContactInfo { Username = "User_Sample_10", Email = "User_Sample10@gmail.com" }
+                List<ContactModel> contactList = new List<ContactModel>
+                { 
+                    new ContactModel { contactName = "User_Sample_1", contactEmail = "User_Sample_1@gmail.com" },
+                    new ContactModel { contactName = "User_Sample_2", contactEmail = "User_Sample_2@gmail.com" },
+                    new ContactModel { contactName = "User_Sample_3", contactEmail = "User_Sample_3@gmail.com" },
+                    new ContactModel { contactName = "User_Sample_4", contactEmail = "User_Sample_4@gmail.com" },
+                    new ContactModel { contactName = "User_Sample_5", contactEmail = "User_Sample_5@gmail.com" },
+                    new ContactModel { contactName = "User_Sample_6", contactEmail = "User_Sample_6@gmail.com" },
+                    new ContactModel { contactName = "User_Sample_7", contactEmail = "User_Sample_7@gmail.com" },
+                    new ContactModel { contactName = "User_Sample_8", contactEmail = "User_Sample_8@gmail.com" },
+                    new ContactModel { contactName = "User_Sample_9", contactEmail = "User_Sample_9@gmail.com" },
+                    new ContactModel { contactName = "User_Sample_10", contactEmail = "User_Sample10@gmail.com" }
                 };
 
             return contactList;
@@ -35,21 +35,20 @@ namespace ChitChat.Views
 
         public ChatPage()
         {
-            List<ContactInfo> contactList = new List<ContactInfo>();
+            List<ContactModel> contactList = new List<ContactModel>();
             InitializeComponent();
             contactList = Init_List();
             contactView.ItemsSource = contactList;
         }
         private async void ContactView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var contact = ((ListView)sender).SelectedItem as ContactInfo;
+            var contact = ((ListView)sender).SelectedItem as ContactModel;
             if(contact == null)
             {
                 return;
             }
 
-            await DisplayAlert("error", contact.Username, "ok");
-            await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?name={contact.Username}");
+            await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?name={contact.contactName}");
         }
         private void ContactView_ItemTapped(object sender, TappedEventArgs e)
         {

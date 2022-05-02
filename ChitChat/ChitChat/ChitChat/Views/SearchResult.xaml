@@ -46,12 +46,12 @@
                                             <Label VerticalOptions="Center"
                                                    FontSize="16"
                                                    TextColor="#000"
-                                                   Text="{Binding Username}"
+                                                   Text="{Binding name}"
                                                    Margin="0,5,0,0"/>
 
                                             <Label VerticalOptions="Fill"
                                                    FontSize="14"
-                                                   Text="{Binding Email}"
+                                                   Text="{Binding email}"
                                                    TextColor="Gray"
                                                    Margin="0,0,0,5"/>
                                         </StackLayout>

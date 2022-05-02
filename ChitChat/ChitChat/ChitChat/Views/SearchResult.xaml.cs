@@ -13,17 +13,18 @@ namespace ChitChat.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchResult : ContentPage
     {
-          private readonly List<ContactInfo> userList = new List<ContactInfo>()
-            {
-                new ContactInfo { Username = "Horeb", Email = "horeb@gmail.com" },
-                new ContactInfo { Username = "Van AJ", Email = "van@gmail.com" },
-                new ContactInfo { Username = "CJ", Email = "cj@gmail.com" },
-                new ContactInfo { Username = "AJ", Email = "aj@gmail.com" },
-                new ContactInfo { Username = "Edwin", Email = "edwin@gmail.com" },
-                new ContactInfo { Username = "Chris", Email = "chris@gmail.com" },
-                new ContactInfo { Username = "Nikolai", Email = "nikolai@gmail.com" },
-                new ContactInfo { Username = "Nina", Email = "nina@gmail.com" },
-            };
+        private readonly List<UserModel> userList = new List<UserModel>()
+          {
+                new UserModel { name = "Horeb", email = "horeb@gmail.com" },
+                new UserModel { name = "Van AJ", email = "van@gmail.com" },
+                new UserModel { name = "CJ", email = "cj@gmail.com" },
+                new UserModel { name = "AJ", email = "aj@gmail.com" },
+                new UserModel { name = "Edwin", email = "edwin@gmail.com" },
+                new UserModel { name = "Chris", email = "chris@gmail.com" },
+                new UserModel { name = "Nikolai", email = "nikolai@gmail.com" },
+                new UserModel { name = "Nina", email = "nina@gmail.com" },
+          };
+    
 
          public SearchResult()
         {
@@ -33,12 +34,12 @@ namespace ChitChat.Views
 
         async void UsersView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var select = ((ListView)sender).SelectedItem as ContactInfo;
+            var select = ((ListView)sender).SelectedItem as UserModel;
             if(select == null)
             {
                 return;
             }
-            await DisplayAlert("Would you like to add", select.Username, "No", "Yes");
+            await DisplayAlert("Would you like to add", select.name, "No", "Yes");
         }
         private void UsersView_ItemTapped(object sender, TappedEventArgs e)
         {
@@ -47,9 +48,9 @@ namespace ChitChat.Views
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if ((usersView.ItemsSource = userList.Where(s => s.Email.Contains(SearchBar.Text))) != null)
+            if ((usersView.ItemsSource = userList.Where(s => s.email.Contains(SearchBar.Text))) != null)
             {
-                usersView.ItemsSource = userList.Where(s => s.Email.Contains(SearchBar.Text));
+                usersView.ItemsSource = userList.Where(s => s.email.Contains(SearchBar.Text));
             }
             else
             {

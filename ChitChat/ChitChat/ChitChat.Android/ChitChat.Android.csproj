@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="CustomEntryRenderer.cs" />
     <Compile Include="CustomSearchBarRenderer.cs" />
+    <Compile Include="DependencyServices\FirebaseAuthService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

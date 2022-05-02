@@ -11,32 +11,24 @@ using ChitChat.Models;
 namespace ChitChat.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    [QueryProperty("SearchInput", "input")]
     public partial class SearchResult : ContentPage
     {
-        public string _searchInput;
-        private readonly List<ContactInfo> userList = new List<ContactInfo>()
-        {
-            new ContactInfo { Username = "Horeb", Email = "horeb@gmail.com" },
-            new ContactInfo { Username = "Van AJ", Email = "van@gmail.com" }
-        };
+          private readonly List<ContactInfo> userList = new List<ContactInfo>()
+            {
+                new ContactInfo { Username = "Horeb", Email = "horeb@gmail.com" },
+                new ContactInfo { Username = "Van AJ", Email = "van@gmail.com" },
+                new ContactInfo { Username = "CJ", Email = "cj@gmail.com" },
+                new ContactInfo { Username = "AJ", Email = "aj@gmail.com" },
+                new ContactInfo { Username = "Edwin", Email = "edwin@gmail.com" },
+                new ContactInfo { Username = "Chris", Email = "chris@gmail.com" },
+                new ContactInfo { Username = "Nikolai", Email = "nikolai@gmail.com" },
+                new ContactInfo { Username = "Nina", Email = "nina@gmail.com" },
+            };
+
          public SearchResult()
         {
             InitializeComponent();
-
-            if ((usersView.ItemsSource = userList.Where(s => s.Email.Contains(SearchInput))) != null)
-            {
-                usersView.ItemsSource = userList.Where(s => s.Email.Contains(SearchInput));
-            }
-            else
-            {
-                DisplayAlert("","User not found.", "OK");
-            }
-        }
-        public string SearchInput
-        {
-            get => _searchInput;
-            set => SearchInput = value;
+            usersView.ItemsSource = userList;
         }
 
         async void UsersView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -51,6 +43,18 @@ namespace ChitChat.Views
         private void UsersView_ItemTapped(object sender, TappedEventArgs e)
         {
             ((ListView)sender).SelectedItem = null;
+        }
+
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((usersView.ItemsSource = userList.Where(s => s.Email.Contains(SearchBar.Text))) != null)
+            {
+                usersView.ItemsSource = userList.Where(s => s.Email.Contains(SearchBar.Text));
+            }
+            else
+            {
+                await DisplayAlert("", "User not found.", "OK");
+            }
         }
     }
 

@@ -34,10 +34,10 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20,15,20,0" >
-            <ScrollView VerticalOptions="EndAndExpand">
+            <!--<ScrollView VerticalOptions="EndAndExpand">
                 <StackLayout>
 
-                    <!--Not Me-->
+        
                     <Grid ColumnSpacing="10" HorizontalOptions="Start">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -73,7 +73,7 @@
                         </Frame>
                     </Grid>
 
-                    <!--Me-->
+             
                     <Grid ColumnSpacing="10" HorizontalOptions="End">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -111,6 +111,85 @@
                     </Grid>
 
                 </StackLayout>
+            </ScrollView>-->
+
+            <ScrollView>
+                <ListView x:Name="conversationView" 
+                          SeparatorColor="#fff" 
+                          Scale="1"
+                          SelectionMode="Single"
+                          VerticalScrollBarVisibility="Never"
+                          Visual="Material"
+                          HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="0,0,0,0">
+                                    <Frame Padding="0,10,0,10">
+                                        <Grid ColumnSpacing="10" HorizontalOptions="Start">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="7"></RowDefinition>
+                                                <RowDefinition Height="35"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="35"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Frame Padding="0"
+                                                   Margin="1"
+                                                   Grid.Column="0"
+                                                   Grid.Row="1"
+                                                   CornerRadius="25">
+                                                <Image Source="@drawable/chatimg.png"
+                                                      HeightRequest="40"
+                                                      Aspect="AspectFill"
+                                                />
+                                            </Frame>
+                                            <Frame
+                                                    CornerRadius="25"
+                                                    Grid.Column="1"
+                                                    Grid.Row="0"
+                                                    Grid.RowSpan="2"
+                                                    Padding="15,10,15,15"
+                                                    Margin="0,0,80,3"
+                                                    HasShadow="False"
+                                                    x:Name="MessageBubble"
+                                                    BackgroundColor="{Binding backgroundColor}">
+                                                <Label 
+                                                Text="{Binding message}"
+                                                FontSize="16"
+                                            ></Label>
+                                            </Frame>
+                                        </Grid>
+
+
+
+
+                                        <!--<StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                                            <Frame Padding="0"
+                                                       Margin="1"
+                                                       Grid.Column="0"
+                                                       Grid.Row="1"
+                                                       WidthRequest="40"
+                                                       CornerRadius="25">
+                                                <Image Source="@drawable/chatimg.png"
+                                                              HeightRequest="40"
+                                                              Aspect="AspectFill"
+                                                  />
+                                            </Frame>
+                                            <Label VerticalOptions="Fill"
+                                                   FontSize="14"
+                                                   Text="{Binding message}"
+                                                   TextColor="Gray"
+                                                   Margin="0,0,0,5"/>
+                                        </StackLayout>-->
+
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </ScrollView>
 
             <Grid ColumnSpacing="10" HeightRequest="70" Margin="0,0,0,7">
@@ -121,7 +200,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="30"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                
+
                 <Frame x:Name="MessageFrame"
                 BorderColor="#d8dae3" 
                 CornerRadius="50" 
@@ -149,7 +228,8 @@
                 HorizontalOptions="End"
                 VerticalOptions="Center"
                 Rotation="45"
-                Source="ic_send_disabled"/>
+                Source="ic_send_disabled"
+                    Clicked="SendMessage"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

@@ -48,7 +48,7 @@ namespace ChitChat.Views
                 return;
             }
 
-            await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?name={contact.contactName}");
+            await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?username={contact.contactName}");
         }
         private void ContactView_ItemTapped(object sender, TappedEventArgs e)
         {

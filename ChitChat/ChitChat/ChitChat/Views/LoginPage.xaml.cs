@@ -32,7 +32,7 @@ namespace ChitChat.Views
             var email = Email.Text;
             var password = Password.Text;
 
-            if (email == "" || password == "")
+            /*if (email == "" || password == "")
             {
                 PasswordFrame.BorderColor = Color.Red;
                 EmailFrame.BorderColor = Color.Red;
@@ -52,7 +52,7 @@ namespace ChitChat.Views
                 PasswordFrame.BorderColor = Color.Red;
                 await DisplayAlert("Login Failed", "Your password is missing. Please try again.", "OK");
                 return;
-            }
+            }*/
 
             /*If not verified*/
             /*if (email)
@@ -63,13 +63,13 @@ namespace ChitChat.Views
                 return;
             }*/
 
-            if (email != "admin" && password != "123")
+            /*if (email != "admin" && password != "123")
             {
                 PasswordFrame.BorderColor = Color.Red;
                 EmailFrame.BorderColor = Color.Red;
                 await DisplayAlert("Login Failed", "Your email or password is incorrect. Please try again.", "OK");
                 return;
-            }
+            }*/
 
             LoginProceed();
         }

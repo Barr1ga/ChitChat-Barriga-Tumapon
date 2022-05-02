@@ -56,14 +56,14 @@
 
             <ScrollView>
                 <ListView x:Name="contactView" 
-                      SeparatorColor="#fff" 
-                      Scale="1"
-                      SelectionMode="Single"
-                      ItemSelected="ContactView_ItemSelected"
-                      ItemTapped="ContactView_ItemTapped"
-                      VerticalScrollBarVisibility="Never"
-                      Visual="Material"
-                      HasUnevenRows="True">
+                          SeparatorColor="#fff" 
+                          Scale="1"
+                          SelectionMode="Single"
+                          ItemSelected="ContactView_ItemSelected"
+                          ItemTapped="ContactView_ItemTapped"
+                          VerticalScrollBarVisibility="Never"
+                          Visual="Material"
+                          HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

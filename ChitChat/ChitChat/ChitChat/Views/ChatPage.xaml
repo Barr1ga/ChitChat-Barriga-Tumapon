@@ -83,8 +83,8 @@
                                             <StackLayout VerticalOptions="Center" Orientation="Vertical">
                                                 <Label VerticalOptions="Center"
                                                    FontSize="16"
-                                                   Text="{Binding Username}"
                                                    TextColor="#000"
+                                                   Text="{Binding Username}"
                                                    Margin="0,5,0,0"/>
 
                                                 <Label VerticalOptions="Fill"

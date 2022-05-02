@@ -5,7 +5,14 @@ using System.Text;
 
 namespace ChitChat.Models
 {
-    class ContactInfo : INotifyPropertyChanged
+    public class ContactInfo
+    {
+        public string Id { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+    }
+
+   /*class ContactInfo : INotifyPropertyChanged
     {
 
         public string Id
@@ -56,5 +63,5 @@ namespace ChitChat.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
+    }*/
 }

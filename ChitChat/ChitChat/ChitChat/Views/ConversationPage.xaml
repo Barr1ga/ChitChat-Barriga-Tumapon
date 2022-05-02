@@ -4,7 +4,8 @@
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="ChitChat.Views.ConversationPage"
              Shell.FlyoutBehavior="Disabled"
-             Shell.TabBarIsVisible="False" BackgroundColor="#fff">
+             Shell.TabBarIsVisible="False" 
+             BackgroundColor="#fff">
 
     <Shell.TitleView>
         <Grid ColumnSpacing="10">

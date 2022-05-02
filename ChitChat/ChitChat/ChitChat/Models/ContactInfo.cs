@@ -11,8 +11,8 @@ namespace ChitChat.Models
         public string Username { get; set; }
         public string Email { get; set; }
     }
-
-   /*class ContactInfo : INotifyPropertyChanged
+    /*
+    class ContactInfo : INotifyPropertyChanged
     {
 
         public string Id
@@ -63,5 +63,6 @@ namespace ChitChat.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }*/
+    }
+    */
 }

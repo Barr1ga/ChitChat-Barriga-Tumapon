@@ -4,30 +4,38 @@
              x:Class="ChitChat.Views.SearchResult">
     <ContentPage.Content>
         <StackLayout>
+            <Frame 
+                x:Name="SearchFrame"
+                BorderColor="#d8dae3" 
+                CornerRadius="50" 
+                HeightRequest="45"
+                HasShadow="False"
+                Margin="0,2.5,0,2.5" 
+                Padding="0">
 
-            <Frame BorderColor="Gray"
-                   CornerRadius="15"
-                   Margin="20, 20, 20, 20"
-                   HasShadow="False"
-                   Padding="2, 2, 2, -2">
-                <ListView x:Name="usersView" 
+                <SearchBar 
+                   x:Name="SearchBar"
+                   Placeholder="Search Email" 
+                   FontSize="16"
+                   TextChanged="SearchBar_TextChanged"/>
+            </Frame>
+            <ListView x:Name="usersView" 
                       HeightRequest="67" 
                       SeparatorVisibility="None"
                       Scale="0.99"
                       SelectionMode="Single"
                       ItemSelected="UsersView_ItemSelected"
                       ItemTapped="UsersView_ItemTapped">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ImageCell Text="{Binding Name}"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell Text="{Binding Name}"
                                    TextColor="#8c52ff"
                                    Detail ="{Binding Email}"
                                    DetailColor="Gray"
                                    ImageSource="@drawable/chatimg.png"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Frame>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

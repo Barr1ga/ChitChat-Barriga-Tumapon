@@ -6,7 +6,7 @@
              Shell.FlyoutBehavior="Disabled"
              Shell.NavBarIsVisible="False"
              >
-    
+
     <ContentPage.Content>
         <StackLayout Padding="20,15,20,0" >
             <Grid Padding="0,0,0,5" ColumnSpacing="10">
@@ -39,22 +39,20 @@
                 HasShadow="False"
                 Margin="0,2.5,0,2.5" 
                 Padding="0">
+                
                 <SearchBar 
                    x:Name="ContactsSearchBar"
                    Placeholder="Search Email" 
                    FontSize="16"
-                   SearchButtonPressed="SearchPressed"/>
-                   <!--TextChanged="SearchBar_TextChanged"-->
+                   Focused="SearchBar_Focused"/>
             </Frame>
 
             <!--Display if no contacts  
             <Label Text="You have no contacts as of the moment" 
                    FontSize="Medium" 
                    HorizontalTextAlignment="Center"
-                   TextColor="Black"/>
-                -->
-
-            <!--Display contacts-->
+                   TextColor="Black"/> -->
+                
 
             <ScrollView>
                 <ListView x:Name="contactView" 
@@ -69,13 +67,13 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Margin="0,0,0,0"> 
+                                <Grid Margin="0,0,0,0">
                                     <Frame Padding="0,10,0,10">
                                         <StackLayout Orientation="Horizontal">
                                             <Frame Padding="0"
                                                    CornerRadius="500"
                                                    Margin="1,1,10,1">
-                                            <Image Source="@drawable/chatimg.png"
+                                                <Image Source="@drawable/chatimg.png"
                                                    WidthRequest="55"
                                                    Aspect="AspectFill"
                                                    />
@@ -101,7 +99,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+        

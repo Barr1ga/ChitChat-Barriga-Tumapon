@@ -22,11 +22,11 @@ namespace ChitChat.Droid.DependencyServices
         {
             try
             {
-                FirebaseAuthResponseModel response = new FirebaseAuthResponseModel() { Status = true, Response = "Currently logged in." };
+                /*FirebaseAuthResponseModel response = new FirebaseAuthResponseModel() { Status = true, Response = "Currently logged in." };
                 if(FirebaseAuth.Instance.CurrentUser.Uid == null)
                 {
 
-                }
+                }*/
             }
         }
     }

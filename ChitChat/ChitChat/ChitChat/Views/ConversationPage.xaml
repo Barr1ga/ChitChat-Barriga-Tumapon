@@ -125,43 +125,44 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Grid Margin="0,0,0,0">
-                                    <Frame Padding="0,10,0,10">
-                                        <Grid ColumnSpacing="10" HorizontalOptions="Start">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="7"></RowDefinition>
-                                                <RowDefinition Height="35"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="35"></ColumnDefinition>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Frame Padding="0"
-                                                   Margin="1"
-                                                   Grid.Column="0"
-                                                   Grid.Row="1"
-                                                   CornerRadius="25">
-                                                <Image Source="@drawable/chatimg.png"
-                                                      HeightRequest="40"
-                                                      Aspect="AspectFill"
-                                                />
-                                            </Frame>
-                                            <Frame
-                                                    CornerRadius="25"
-                                                    Grid.Column="1"
-                                                    Grid.Row="0"
-                                                    Grid.RowSpan="2"
-                                                    Padding="15,10,15,15"
-                                                    Margin="0,0,80,3"
-                                                    HasShadow="False"
-                                                    x:Name="MessageBubble"
-                                                    BackgroundColor="{Binding backgroundColor}">
-                                                <Label 
-                                                Text="{Binding message}"
-                                                FontSize="16"
-                                            ></Label>
-                                            </Frame>
-                                        </Grid>
+                                    <Frame Padding="0,0,0,0">
+                                        <Grid ColumnSpacing="10" HorizontalOptions="{Binding horizontalOption}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="7"></RowDefinition>
+                                                    <RowDefinition Height="35"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="35"></ColumnDefinition>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
 
+                                                <Frame Padding="0"
+                                                       Margin="1"
+                                                       Grid.Column="0"
+                                                       Grid.Row="1"
+                                                       CornerRadius="25"
+                                                       IsVisible="{Binding imageVisibility}">
+                                                    <Image Source="@drawable/chatimg.png"
+                                                          HeightRequest="40"
+                                                          Aspect="AspectFill"
+                                                    />
+                                                </Frame>
+                                                <Frame
+                                                        CornerRadius="25"
+                                                        Grid.Column="1"
+                                                        Grid.Row="1"
+                                                        Grid.RowSpan="2"
+                                                        Padding="15,10,15,15"
+                                                        HasShadow="False"
+                                                        
+                                                        Margin="{Binding margin}"
+                                                        BackgroundColor="{Binding backgroundColor}">
+                                                    <Label 
+                                                    Text="{Binding message}"
+                                                    FontSize="16"
+                                                    ></Label>
+                                                </Frame>
+                                            </Grid>
 
 
 
@@ -217,7 +218,7 @@
                     MaxLength="240"
                     TextChanged="ToggleSendButton"
                     MinimumWidthRequest="50"
-                    Placeholder="Write your message here..." >
+                    Placeholder="Write a message..." >
                     </Editor>
                 </Frame>
                 <ImageButton
@@ -229,7 +230,7 @@
                 VerticalOptions="Center"
                 Rotation="45"
                 Source="ic_send_disabled"
-                    Clicked="SendMessage"/>
+                Clicked="SendMessage"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

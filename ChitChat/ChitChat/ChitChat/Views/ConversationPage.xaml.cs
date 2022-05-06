@@ -19,11 +19,14 @@ namespace ChitChat.Views
 
         public class ModifiedConversationList
         {
-            public string converseeID;
-            public string message;
-            public string backgroundColor;
-            public string margin;
-            public string align;
+            public string converseeID { get; set; }
+            public string message { get; set; }
+            public string backgroundColor { get; set; }
+            public string margin { get; set; }
+            public string imageVisibility { get; set; }
+            public string horizontalOption { get; set; }
+
+
         }
 
         private List<ModifiedConversationList> Init_List()
@@ -35,7 +38,7 @@ namespace ChitChat.Views
                     new ConversationModel { converseeID = "1", message = "Lorem ipsum dolor sit amet" },
                     new ConversationModel { converseeID = "2", message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
                     new ConversationModel { converseeID = "2", message = "Lorem ipsum dolor sit amet" },
-                    new ConversationModel { converseeID = "1", message = "consectetur adipiscing.com" },
+                    new ConversationModel { converseeID = "1", message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
                     new ConversationModel { converseeID = "1", message = "Lorem ipsum dolor sit amet" },
                 };
 
@@ -48,8 +51,9 @@ namespace ChitChat.Views
                         converseeID = conversation.converseeID,
                         message = conversation.message,
                         backgroundColor = "#8c52ff",
-                        margin = "0",
-                        align = "End",
+                        margin = "30,0,0,3",
+                        imageVisibility = "False",
+                        horizontalOption = "EndAndExpand",
                     });
                 }
                 else
@@ -59,38 +63,12 @@ namespace ChitChat.Views
                         converseeID = conversation.converseeID,
                         message = conversation.message,
                         backgroundColor = "#edeefc",
-                        margin = "0",
-                        align = "End",
+                        margin = "0,0,80,3",
+                        imageVisibility = "True",
+                        horizontalOption = "StartAndExpand",
                     });
                 }
             });
-
-            modifiedConversationList
-                .ForEach((conversation) => Console.WriteLine(conversation.backgroundColor));
-            /*foreach (ConversationModel conversation in conversationList)
-            {
-                if (conversation.converseeID == _id)
-                {
-                    modifiedConversationList.Add(new ModifiedConversationList
-                    { 
-                        converseeID = conversation.converseeID, 
-                        message = conversation.message,
-                        backgroundColor = "#8c52ff",
-                        margin = "0",
-                        align = "End",
-                    });
-                } else
-                {
-                    modifiedConversationList.Add(new ModifiedConversationList
-                    {
-                        converseeID = conversation.converseeID,
-                        message = conversation.message,
-                        backgroundColor = "#edeefc",
-                        margin = "0",
-                        align = "End",
-                    });
-                }
-            }*/
 
             return modifiedConversationList;
         }
@@ -101,8 +79,8 @@ namespace ChitChat.Views
             List<ModifiedConversationList> modifiedConversationList = new List<ModifiedConversationList>();
             modifiedConversationList = Init_List();
 
-            modifiedConversationList
-                .ForEach((conversation) => Console.WriteLine(conversation.backgroundColor));
+            /*modifiedConversationList
+                .ForEach((conversation) => Console.WriteLine(conversation.backgroundColor));*/
 
             conversationView.ItemsSource = modifiedConversationList;
         }
@@ -125,7 +103,6 @@ namespace ChitChat.Views
 
         private void SendMessage(object sender, System.EventArgs e)
         {
-
         }
     }
 }

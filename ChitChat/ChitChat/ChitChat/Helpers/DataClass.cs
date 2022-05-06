@@ -1,4 +1,4 @@
-﻿//using Newtonsoft.json;
+﻿using Newtonsoft.Json;
 using ChitChat.Models;
 using System;
 using System.Collections.Generic;
@@ -51,14 +51,14 @@ namespace ChitChat.Helpers
             set
             {
                 _loggedInUser = value;
-                //Application.Current.Properties["loggedInUser"] = JsonConvert.SerializeObject(_loggedInUser);
+                Application.Current.Properties["loggedInUser"] = JsonConvert.SerializeObject(_loggedInUser);
                 Application.Current.SavePropertiesAsync();
             }
             get
             {
                 if (_loggedInUser == null && Application.Current.Properties.ContainsKey("loggedInUser"))
                 {
-                   //_loggedInUser = JsonConvert.DeserializeObject<UserModel>(Application.Current.Properties["loggedInUser"].ToString())
+                    _loggedInUser = JsonConvert.DeserializeObject<UserModel>(Application.Current.Properties["loggedInUser"].ToString());
                 }
 
                 return _loggedInUser;

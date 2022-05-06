@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChitChat.DependencyServices;
+using ChitChat.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +21,6 @@ namespace ChitChat.Views
     
         }
 
-
         private void EmailFocused(object sender, EventArgs e)
         {
             EmailFrame.BorderColor = Color.FromHex("#d8dae3");
@@ -31,21 +32,18 @@ namespace ChitChat.Views
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(email);
 
-            if (email == "")
+            if (string.IsNullOrEmpty(Email.Text))
             {
                 EmailFrame.BorderColor = Color.Red;
                 await DisplayAlert("Login Failed", "Your email is missing. Please try again.", "OK");
                 return;
             }
 
-            if (email != "")
+            if (!match.Success)
             {
-                if (!match.Success)
-                {
-                    EmailFrame.BorderColor = Color.Red;
-                    await DisplayAlert("Sign up Failed", "Your email is badly formatted. Please try again.", "OK");
-                    return;
-                }
+                EmailFrame.BorderColor = Color.Red;
+                await DisplayAlert("Sign up Failed", "Your email is badly formatted. Please try again.", "OK");
+                return;
             }
 
             /*If not verified*/
@@ -57,6 +55,15 @@ namespace ChitChat.Views
                 return;
             }*/
 
+            //setloading = true;
+            FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+            res = await DependencyService.Get<iFirebaseAuth>().ResetPassword(Email.Text);
+
+            if (res.Status == false)
+            {
+                await DisplayAlert("Error", res.Response + ".", "OK");
+                return;
+            }
 
             await DisplayAlert("Success", "An email has been sent to your email address.", "OK");
             LoginProceed();

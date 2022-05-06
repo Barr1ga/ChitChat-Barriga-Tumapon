@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ChitChat.DependencyServices;
+using ChitChat.Models;
+using Plugin.CloudFirestore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ChitChat.Helpers;
 
 namespace ChitChat.Views
 {
@@ -18,7 +22,6 @@ namespace ChitChat.Views
             InitializeComponent();
   
         }
-
 
         private void UsernameFocused(object sender, EventArgs e)
         {
@@ -40,42 +43,43 @@ namespace ChitChat.Views
             ConfirmPasswordFrame.BorderColor = Color.FromHex("#636370");
         }
 
+        [Obsolete]
         private async void SignupClicked(object sender, EventArgs e)
         {
-            var email = Email.Text;
-            var password = Password.Text;
-            var username = Username.Text;
-            var confirmPassword = ConfirmPassword.Text;
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match match = regex.Match(email);
+            Match match = regex.Match(Email.Text);
+            DataClass dataClass = DataClass.GetInstance;
 
-            if (username == "")
+            if (string.IsNullOrEmpty(Username.Text))
             {
                 UsernameFrame.BorderColor = Color.Red;
             }
 
-            if (email == "")
+            if (string.IsNullOrEmpty(Email.Text))
             {
                 EmailFrame.BorderColor = Color.Red;
             }
 
-            if (password == "")
+            if (string.IsNullOrEmpty(Password.Text))
             {
                 PasswordFrame.BorderColor = Color.Red;
             }
 
-            if (confirmPassword == "")
+            if (string.IsNullOrEmpty(ConfirmPassword.Text))
             {
                 ConfirmPasswordFrame.BorderColor = Color.Red;
             }
 
-            if (username == "" || email == "" || password == "" || confirmPassword == "")
+            if (string.IsNullOrEmpty(Username.Text) 
+                || string.IsNullOrEmpty(Email.Text) 
+                || string.IsNullOrEmpty(Password.Text) 
+                || string.IsNullOrEmpty(ConfirmPassword.Text))
             {
                 await DisplayAlert("Sign up Failed", "Your username, email or password is missing. Please try again.", "OK");
                 return;
             }
 
-            if(email != "")
+            if(string.IsNullOrEmpty(Email.Text))
             {
                 if (!match.Success)
                 {
@@ -85,9 +89,9 @@ namespace ChitChat.Views
                 }
             }
 
-            if (password != "" || confirmPassword != "")
+            if (string.IsNullOrEmpty(Password.Text) || string.IsNullOrEmpty(ConfirmPassword.Text))
             {
-                if (password != confirmPassword)
+                if (Password.Text != ConfirmPassword.Text)
                 {
                     PasswordFrame.BorderColor = Color.Red;
                     ConfirmPasswordFrame.BorderColor = Color.Red;
@@ -96,7 +100,32 @@ namespace ChitChat.Views
                 }
             }
 
-            await DisplayAlert("Success", "Sign up successful. Verification email sent.", "OK");
+
+            //setloading = true;
+            FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+            res = await DependencyService.Get<iFirebaseAuth>().SignupWithEmailPassword(Username.Text, Email.Text, Password.Text);
+
+            if (res.Status == false)
+            {
+                await DisplayAlert("Error", res.Response + "Please try again.", "OK");
+            }
+
+            try
+            {
+                await CrossCloudFirestore.Current
+                    .Instance
+                    .GetCollection("users")
+                    .GetDocument(dataClass.loggedInUser.uid)
+                    .SetDataAsync(dataClass.loggedInUser);
+
+                await DisplayAlert("Success", res.Response + ".", "OK");
+            } catch (Exception ex)
+            {
+                await DisplayAlert("Error", "Sign up successful. Verification email sent.", "OK");
+            }
+
+            //setloading = false
+            //await DisplayAlert("Success", "Sign up successful. Verification email sent.", "OK");
             LoginProceed();
         }
 

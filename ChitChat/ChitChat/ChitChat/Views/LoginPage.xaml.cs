@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChitChat.DependencyServices;
+using ChitChat.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +19,16 @@ namespace ChitChat.Views
             InitializeComponent();
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            /*
+            if(dataClass.isSignedIn)
+            {
+                await Shell.Current.GoToAsync($"//{nameof(ChatPage)}");
+            }*/
+        }
+
         private void EmailFocused(object sender, EventArgs e)
         {
             EmailFrame.BorderColor = Color.FromHex("#d8dae3");
@@ -29,10 +41,7 @@ namespace ChitChat.Views
 
         private async void LoginClicked(object sender, EventArgs e)
         {
-            var email = Email.Text;
-            var password = Password.Text;
-
-            /*if (email == "" || password == "")
+            if (string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(Password.Text))
             {
                 PasswordFrame.BorderColor = Color.Red;
                 EmailFrame.BorderColor = Color.Red;
@@ -40,21 +49,21 @@ namespace ChitChat.Views
                 return;
             }
 
-            if (email == "")
+            if (string.IsNullOrEmpty(Email.Text))
             {
                 EmailFrame.BorderColor = Color.Red;
                 await DisplayAlert("Login Failed", "Your email is missing. Please try again.", "OK");
                 return;
             }
 
-            if (password == "")
+            if (string.IsNullOrEmpty(Password.Text))
             {
                 PasswordFrame.BorderColor = Color.Red;
                 await DisplayAlert("Login Failed", "Your password is missing. Please try again.", "OK");
                 return;
-            }*/
+            }
 
-            /*If not verified*/
+            //If not verified*/
             /*if (email)
             {
                 PasswordFrame.BorderColor = Color.Red;
@@ -63,14 +72,18 @@ namespace ChitChat.Views
                 return;
             }*/
 
-            /*if (email != "admin" && password != "123")
+            //setloading == true
+            FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+            res = await DependencyService.Get<iFirebaseAuth>().LoginWithEmailPassword(Email.Text, Password.Text);
+
+            if (res.Status == false)
             {
                 PasswordFrame.BorderColor = Color.Red;
                 EmailFrame.BorderColor = Color.Red;
-                await DisplayAlert("Login Failed", "Your email or password is incorrect. Please try again.", "OK");
+                await DisplayAlert("Login Failed", res.Response + "Please try again.", "OK");
                 return;
-            }*/
-
+            }
+            //setloading = false;
             LoginProceed();
         }
 

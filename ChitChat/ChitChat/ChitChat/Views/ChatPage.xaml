@@ -8,6 +8,7 @@
              >
     <ContentPage.Content>
         <StackLayout Padding="20,15,20,0" >
+            <ActivityIndicator IsRunning="true" IsVisible="true" Color="#8c52ff"></ActivityIndicator>
             <Grid Padding="0,0,0,5" ColumnSpacing="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"></ColumnDefinition>

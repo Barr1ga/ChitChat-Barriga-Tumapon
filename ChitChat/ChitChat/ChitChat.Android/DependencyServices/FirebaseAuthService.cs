@@ -12,10 +12,10 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
-//[assembly: Dependency(typeof(FirebaseAuthService))]
+[assembly: Dependency(typeof(FirebaseAuthService))]
 namespace ChitChat.Droid.DependencyServices
 {
-    /*internal class FirebaseAuthService : iFirebaseAuth
+    internal class FirebaseAuthService : iFirebaseAuth
     {
         Dataclass dataclass = DatabaseModel.GetInstance;
         public FirebaseAuthResponseModel IsLoggedIn()
@@ -29,5 +29,5 @@ namespace ChitChat.Droid.DependencyServices
                 }
             }
         }
-    }*/
+    }
 }

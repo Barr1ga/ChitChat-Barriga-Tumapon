@@ -23,6 +23,12 @@ namespace ChitChat.Models
         public string email { get { return _email; } set { _email = value; OnPropertyChanged(nameof(email)); } }
         string _name { get; set; }
         public string name { get { return _name; } set { _name = value; OnPropertyChanged(nameof(name)); } }
+
+        //Summary
+        //0 - Email
+        //1 - Social Google
+        //1 - Social Facebook
+
         int _userType { get; set; }
         public int userType { get { return _userType; } set { _userType = value; OnPropertyChanged(nameof(userType)); } }
 

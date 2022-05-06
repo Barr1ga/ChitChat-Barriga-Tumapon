@@ -9,7 +9,8 @@
                    x:Name="SearchBar"
                    Placeholder="Search Email" 
                    FontSize="16"
-                   TextChanged="SearchBar_TextChanged"/>
+                   TextChanged="SearchBar_TextChanged"
+                   SearchButtonPressed="SearchPressed"/>
     </Shell.TitleView>
 
 

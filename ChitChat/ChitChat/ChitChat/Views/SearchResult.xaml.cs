@@ -13,6 +13,9 @@ namespace ChitChat.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchResult : ContentPage
     {
+
+        List<UserModel> searchList = new List<UserModel>();
+
         private readonly List<UserModel> userList = new List<UserModel>()
           {
                 new UserModel { name = "Horeb", email = "horeb@gmail.com" },
@@ -48,7 +51,7 @@ namespace ChitChat.Views
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if ((usersView.ItemsSource = userList.Where(s => s.email.Contains(SearchBar.Text))) != null)
+            if (userList.Where(s => s.email.Contains(SearchBar.Text)) != null)
             {
                 usersView.ItemsSource = userList.Where(s => s.email.Contains(SearchBar.Text));
             }
@@ -57,6 +60,15 @@ namespace ChitChat.Views
                 await DisplayAlert("", "User not found.", "OK");
             }
         }
+
+        /*private async void SearchPressed(object sender, EventArgs e)
+        {
+            searchList = (List<UserModel>)userList.Where(s => s.email.Contains(SearchBar.Text));
+            if (searchList.Count == 0)
+            {
+                await DisplayAlert("", "User not found.", "OK");
+            }
+        }*/
     }
 
 }

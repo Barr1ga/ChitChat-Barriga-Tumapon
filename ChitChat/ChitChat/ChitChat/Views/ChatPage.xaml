@@ -8,6 +8,7 @@
              >
     <ContentPage.Content>
         <StackLayout Padding="20,15,20,0" >
+            
             <Grid Padding="0,0,0,5" ColumnSpacing="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"></ColumnDefinition>
@@ -46,13 +47,20 @@
                    Focused="SearchBar_Focused"/>
             </Frame>
 
-            <!--Display if no contacts  
+
             <Label Text="You have no contacts as of the moment" 
                    FontSize="Medium" 
                    HorizontalTextAlignment="Center"
-                   TextColor="Black"/> -->
-                
-
+                   TextColor="Black"
+                   IsVisible="{Binding NoContact}"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               IsVisible="{Binding IsBusy}" 
+                               Color="#8c52ff" 
+                               HeightRequest="25"
+                               WidthRequest="25" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center">
+            </ActivityIndicator>
             <ScrollView>
                 <ListView x:Name="contactView" 
                           SeparatorColor="#fff" 
@@ -67,6 +75,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Grid Margin="0,0,0,0">
+                                    
                                     <Frame Padding="0,10,0,10">
                                         <StackLayout Orientation="Horizontal">
                                             <Frame Padding="0"

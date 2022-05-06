@@ -7,11 +7,13 @@
              Shell.NavBarIsVisible="False"
              >
     <ContentPage.Content>
+
         <StackLayout Padding="20,15,20,0" >
             
             <Grid Padding="0,0,0,5" ColumnSpacing="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <controls:CircleImage Source="@drawable/profile_picture.jpg" 
@@ -30,6 +32,7 @@
                    VerticalOptions="Center"
                    Margin="5, 0, 0, 0"
                    FontSize="18"></Label>
+                
             </Grid>
             <Frame 
                 x:Name="EmailFrame"
@@ -39,7 +42,7 @@
                 HasShadow="False"
                 Margin="0,2.5,0,2.5" 
                 Padding="0">
-                
+
                 <SearchBar 
                    x:Name="ContactsSearchBar"
                    Placeholder="Search Email" 
@@ -47,20 +50,32 @@
                    Focused="SearchBar_Focused"/>
             </Frame>
 
+            <AbsoluteLayout HorizontalOptions="Center"
+                            IsVisible="{Binding IsBusy}">
+                <Frame HasShadow="True"
+                           CornerRadius="50"
+                           Padding="0"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           HorizontalOptions="CenterAndExpand"
+                           IsVisible="{Binding IsBusy}"
+                           Margin="0,0,10,0">
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                                       IsVisible="{Binding IsBusy}" 
+                                       Color="#8c52ff" 
+                                       WidthRequest="25"
+                                       HeightRequest="25"
+                                       HorizontalOptions="Center">
+                    </ActivityIndicator>
+                </Frame>
+            </AbsoluteLayout>
 
             <Label Text="You have no contacts as of the moment" 
                    FontSize="Medium" 
                    HorizontalTextAlignment="Center"
                    TextColor="Black"
                    IsVisible="{Binding NoContact}"/>
-            <ActivityIndicator IsRunning="{Binding IsBusy}" 
-                               IsVisible="{Binding IsBusy}" 
-                               Color="#8c52ff" 
-                               HeightRequest="25"
-                               WidthRequest="25" 
-                               HorizontalOptions="Center" 
-                               VerticalOptions="Center">
-            </ActivityIndicator>
+            
             <ScrollView>
                 <ListView x:Name="contactView" 
                           SeparatorColor="#fff" 

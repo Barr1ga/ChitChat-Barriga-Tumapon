@@ -83,6 +83,7 @@ namespace ChitChat.Views
             }
             finally
             {
+                await Task.Delay(1000);
                 IsBusy = false;
                 noContact = false;
             }

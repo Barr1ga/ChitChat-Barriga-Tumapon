@@ -102,14 +102,37 @@ namespace ChitChat.Droid
             }
         }
 
-        public Task<FirebaseAuthResponseModel> ResetPassword(string email)
+        public async Task<FirebaseAuthResponseModel> ResetPassword(string email)
         {
-            throw new NotImplementedException();
+            try
+            {
+                FirebaseAuthResponseModel response = new FirebaseAuthResponseModel() { Status = true, Response = "Email has been sent to your email address." };
+                await FirebaseAuth.Instance.SendPasswordResetEmailAsync(email);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                FirebaseAuthResponseModel response = new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
+                return response;
+            }
         }
 
         public FirebaseAuthResponseModel SignOut()
         {
-            throw new NotImplementedException();
+            try
+            {
+                FirebaseAuthResponseModel response = new FirebaseAuthResponseModel() { Status = true, Response = "Sign out successful." };
+                FirebaseAuth.Instance.SignOut();
+                dataClass.isSignedIn = false;
+                dataClass.loggedInUser = new UserModel();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                FirebaseAuthResponseModel response = new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
+                dataClass.isSignedIn = true;
+                return response;
+            }
         }
 
         public async Task<FirebaseAuthResponseModel> SignUpWithEmailPassword(string name, string email, string password)

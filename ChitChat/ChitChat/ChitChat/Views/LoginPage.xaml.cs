@@ -22,6 +22,8 @@ namespace ChitChat.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            Email.Text = "";
+            Password.Text = "";
             /*
             if(dataClass.isSignedIn)
             {

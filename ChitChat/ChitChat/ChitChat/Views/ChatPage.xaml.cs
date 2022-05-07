@@ -14,10 +14,32 @@ namespace ChitChat.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChatPage : ContentPage
     {
+        bool noContact;
+        bool isBusy;
+        public bool IsBusy
+        {
+            get => isBusy;
+            set
+            {
+                isBusy = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool NoContact
+        {
+            get => noContact;
+            set
+            {
+                noContact = value;
+                OnPropertyChanged();
+            }
+        }
+
         private List<ContactModel> Init_List()
         {         
                 List<ContactModel> contactList = new List<ContactModel>
-                { 
+                {
                     new ContactModel { contactName = "User_Sample_1", contactEmail = "User_Sample_1@gmail.com" },
                     new ContactModel { contactName = "User_Sample_2", contactEmail = "User_Sample_2@gmail.com" },
                     new ContactModel { contactName = "User_Sample_3", contactEmail = "User_Sample_3@gmail.com" },
@@ -35,11 +57,38 @@ namespace ChitChat.Views
 
         public ChatPage()
         {
-            List<ContactModel> contactList = new List<ContactModel>();
             InitializeComponent();
-            contactList = Init_List();
-            contactView.ItemsSource = contactList;
+            LoadContacts();
+            BindingContext = this;
         }
+
+        private async Task LoadContacts()
+        {
+            try
+            {
+                IsBusy = true;
+                List<ContactModel> contactList = Init_List();
+                if(contactList.Count != 0) 
+                {
+                    contactView.ItemsSource = contactList;
+                }
+                else
+                {
+                    noContact = true;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                await Task.Delay(1000);
+                IsBusy = false;
+                noContact = false;
+            }
+        }
+
         private async void ContactView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var contact = ((ListView)sender).SelectedItem as ContactModel;

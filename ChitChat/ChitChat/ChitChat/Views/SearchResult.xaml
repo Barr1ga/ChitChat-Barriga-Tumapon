@@ -15,6 +15,25 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20,5,20,0">
+            <AbsoluteLayout HorizontalOptions="Center"
+                            IsVisible="{Binding IsBusy}">
+                <Frame HasShadow="True"
+                           CornerRadius="50"
+                           Padding="0"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           HorizontalOptions="CenterAndExpand"
+                           IsVisible="{Binding IsBusy}"
+                           Margin="0,0,10,0">
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                                       IsVisible="{Binding IsBusy}" 
+                                       Color="#8c52ff" 
+                                       WidthRequest="25"
+                                       HeightRequest="25"
+                                       HorizontalOptions="Center">
+                    </ActivityIndicator>
+                </Frame>
+            </AbsoluteLayout>
             <ListView x:Name="usersView" 
                       SeparatorColor="#fff" 
                       Scale="1"

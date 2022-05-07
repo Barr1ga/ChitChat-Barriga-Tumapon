@@ -103,7 +103,7 @@ namespace ChitChat.Views
 
             //setloading = true;
             FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
-            res = await DependencyService.Get<iFirebaseAuth>().SignupWithEmailPassword(Username.Text, Email.Text, Password.Text);
+            res = await DependencyService.Get<iFirebaseAuth>().SignUpWithEmailPassword(Username.Text, Email.Text, Password.Text);
 
             if (res.Status == false)
             {

@@ -10,8 +10,8 @@ namespace ChitChat.Models
     {
         bool _Status { get; set; }
         public bool Status { get { return _Status; } set { _Status = value; OnPropertyChanged(nameof(Status)); } }
-        bool _Response { get; set; }
-        public bool Response { get { return _Response; } set { _Response = value; OnPropertyChanged(nameof(Response)); } }
+        string _Response { get; set; }
+        public string Response { get { return _Response; } set { _Response = value; OnPropertyChanged(nameof(Response)); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")

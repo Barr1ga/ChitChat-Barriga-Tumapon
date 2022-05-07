@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ChitChat": {
+      "commandName": "Project"
+    },
+    "Profile 1": {
+      "commandName": "Project"
+    }
+  }
+}

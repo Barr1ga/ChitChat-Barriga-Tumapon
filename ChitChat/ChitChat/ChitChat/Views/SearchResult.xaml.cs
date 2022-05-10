@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ChitChat.Models;
+using Plugin.CloudFirestore;
+using ChitChat.Helpers;
+using Newtonsoft.Json;
 
 namespace ChitChat.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchResult : ContentPage
     {
+        List<UserModel> userList = new List<UserModel>();
+
         bool isBusy;
         public bool IsBusy
         {
@@ -24,7 +29,7 @@ namespace ChitChat.Views
             }
         }
 
-        private List<UserModel> Init_List()
+        /*private List<UserModel> Init_List()
         {
             List<UserModel> userList = new List<UserModel>()
               {
@@ -39,10 +44,9 @@ namespace ChitChat.Views
               };
 
             return userList;
-        }
-    
+        }*/
 
-         public SearchResult()
+        public SearchResult()
         {
             InitializeComponent();
             LoadUsers();
@@ -51,30 +55,23 @@ namespace ChitChat.Views
 
         public async Task LoadUsers()
         {
-            try
-            {
-                IsBusy = true;
-                List<UserModel> userList = Init_List();
-                if (userList.Count != 0)
-                {
-                    usersView.ItemsSource = userList;
-                }
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                await Task.Delay(1000);
-                IsBusy = false;
-            }
+            DataClass dataClass = DataClass.GetInstance;
+
+            IsBusy = true;
+            var document = await CrossCloudFirestore.Current
+                                        .Instance
+                                        .Collection("users")
+                                        .GetAsync();
+            var model = document.ToObjects<UserModel>();
+            userList = model.ToList();
+            usersView.ItemsSource = userList;
+            IsBusy = false;
         }
 
         async void UsersView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var select = ((ListView)sender).SelectedItem as UserModel;
-            if(select == null)
+            if (select == null)
             {
                 return;
             }
@@ -90,7 +87,6 @@ namespace ChitChat.Views
             try
             {
                 IsBusy = true;
-                List<UserModel> userList = Init_List();
                 if (userList.Where(s => s.email.Contains(SearchBar.Text)) != null)
                 {
                     usersView.ItemsSource = userList.Where(s => s.email.Contains(SearchBar.Text));
@@ -109,7 +105,7 @@ namespace ChitChat.Views
                 await Task.Delay(200);
                 IsBusy = false;
             }
-            
+
         }
 
         private async void Add_Clicked(object sender, EventArgs e)
@@ -121,15 +117,6 @@ namespace ChitChat.Views
             }
             await DisplayAlert("Would you like to add", select.name, "No", "Yes");
         }
-
-        /*private async void SearchPressed(object sender, EventArgs e)
-        {
-            searchList = (List<UserModel>)userList.Where(s => s.email.Contains(SearchBar.Text));
-            if (searchList.Count == 0)
-            {
-                await DisplayAlert("", "User not found.", "OK");
-            }
-        }*/
     }
 
 }

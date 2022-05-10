@@ -43,11 +43,11 @@ namespace ChitChat.Views
 
         private async void LoginClicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(Password.Text))
+            if (string.IsNullOrEmpty(Email.Text) && string.IsNullOrEmpty(Password.Text))
             {
                 PasswordFrame.BorderColor = Color.Red;
                 EmailFrame.BorderColor = Color.Red;
-                await DisplayAlert("Login Failed", "Your email or password is missing. Please try again.", "OK");
+                await DisplayAlert("Login Failed", "Your email and password is missing. Please try again.", "OK");
                 return;
             }
 

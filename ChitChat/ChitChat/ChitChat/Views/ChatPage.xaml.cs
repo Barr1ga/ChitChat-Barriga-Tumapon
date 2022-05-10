@@ -71,45 +71,45 @@ namespace ChitChat.Views
                 IsBusy = true;
 
                 CrossCloudFirestore.Current
-                               .Instance
-                               .GetCollection("contacts")
-                               .WhereArrayContains("contactID", dataClass.loggedInUser.uid)
-                               .AddSnapshotListener((snapshot, error) =>
-                               {
-                                   IsBusy = true;
-                                   if (snapshot != null)
-                                   {
-                                       foreach (var documentChange in snapshot.DocumentChanges)
-                                       {
-                                           var json = JsonConvert.SerializeObject(documentChange.Document.Data);
-                                           var obj = JsonConvert.DeserializeObject<ContactModel>(json);
+                    .Instance
+                    .GetCollection("contacts")
+                    .WhereArrayContains("contactID", dataClass.loggedInUser.uid)
+                    .AddSnapshotListener((snapshot, error) =>
+                    {
+                        IsBusy = true;
+                        if (snapshot != null)
+                        {
+                            foreach (var documentChange in snapshot.DocumentChanges)
+                            {
+                                var json = JsonConvert.SerializeObject(documentChange.Document.Data);
+                                var obj = JsonConvert.DeserializeObject<ContactModel>(json);
 
-                                           switch (documentChange.Type)
-                                           {
-                                               case DocumentChangeType.Added:
-                                                   contactList.Add(obj);
-                                                   break;
-                                               case DocumentChangeType.Modified:
-                                                   if (contactList.Where(c => c.id == obj.id).Any())
-                                                   {
-                                                       var item = contactList.Where(c => c.id == obj.id).FirstOrDefault();
-                                                       item = obj;
-                                                   }
-                                                   break;
-                                               case DocumentChangeType.Removed:
-                                                   if (contactList.Where(c => c.id == obj.id).Any())
-                                                   {
-                                                       var item = contactList.Where(c => c.id == obj.id).FirstOrDefault();
-                                                       contactList.Remove(item);
-                                                   }
-                                                   break;
-                                           }
-                                       }
-                                   }
-                                   NoContact = true;
-                                   contactScroll.IsVisible = !NoContact;
-                                   IsBusy = false;
-                               });
+                                switch (documentChange.Type)
+                                {
+                                    case DocumentChangeType.Added:
+                                        contactList.Add(obj);
+                                        break;
+                                    case DocumentChangeType.Modified:
+                                        if (contactList.Where(c => c.id == obj.id).Any())
+                                        {
+                                            var item = contactList.Where(c => c.id == obj.id).FirstOrDefault();
+                                            item = obj;
+                                        }
+                                        break;
+                                     case DocumentChangeType.Removed:
+                                        if (contactList.Where(c => c.id == obj.id).Any())
+                                        {
+                                        var item = contactList.Where(c => c.id == obj.id).FirstOrDefault();
+                                            contactList.Remove(item);
+                                        }
+                                    break;
+                                }
+                            }
+                         }
+                         NoContact = true;
+                         contactScroll.IsVisible = !NoContact;
+                         IsBusy = false;
+                    });
 
                 if (contactList.Count != 0) 
                 {

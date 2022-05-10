@@ -112,6 +112,16 @@ namespace ChitChat.Views
             
         }
 
+        private async void Add_Clicked(object sender, EventArgs e)
+        {
+            var select = ((ListView)sender).SelectedItem as UserModel;
+            if (select == null)
+            {
+                return;
+            }
+            await DisplayAlert("Would you like to add", select.name, "No", "Yes");
+        }
+
         /*private async void SearchPressed(object sender, EventArgs e)
         {
             searchList = (List<UserModel>)userList.Where(s => s.email.Contains(SearchBar.Text));

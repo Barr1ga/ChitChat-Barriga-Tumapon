@@ -17,7 +17,14 @@ namespace ChitChat.Views
         DataClass dataClass = DataClass.GetInstance;
         public ProfilePage()
         {
+            
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            ProfileNameDisplay.Text = dataClass.loggedInUser.name;
+            ProfileEmailDisplay.Text = dataClass.loggedInUser.email;
         }
 
         private async void LogoutClicked(object sender, EventArgs e)

@@ -19,7 +19,7 @@
                          HeightRequest="175" 
                          x:Name="outerRing" 
                          StrokeThickness="7" 
-                         Stroke="#636370" 
+                         Stroke="#e6e6e6" 
                          
                          Scale=".7"
                          HorizontalOptions="CenterAndExpand" 
@@ -44,14 +44,18 @@
                                       Scale="1.04">
                 </controls:CircleImage>
             </Grid>
-            <Label Text="Horeb Barriga" 
+            <Label 
+                   x:Name="ProfileNameDisplay"
+                   Text="" 
                    HorizontalOptions="Center" 
                    VerticalOptions="Center" 
                    TextColor="Black" 
                    FontAttributes="Bold"
                    FontSize="24">
             </Label>
-            <Label Text="hor.barr1ga@gmail.com" 
+            <Label 
+                   x:Name="ProfileEmailDisplay"
+                   Text="" 
                    HorizontalOptions="Center" 
                    VerticalOptions="Center" 
                    TextColor="DimGray" 

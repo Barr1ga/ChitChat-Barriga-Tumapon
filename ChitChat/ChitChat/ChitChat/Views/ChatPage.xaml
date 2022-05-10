@@ -69,13 +69,16 @@
                 </Frame>
             </AbsoluteLayout>
 
-            <Label Text="You have no contacts as of the moment" 
+            <Label 
+                   Text="You have no contacts as of the moment" 
                    FontSize="Medium" 
                    HorizontalTextAlignment="Center"
-                   TextColor="Black"
+                   TextColor="Gray"
+                   VerticalOptions="CenterAndExpand"
+               
                    IsVisible="{Binding NoContact}"/>
-            
-            <ScrollView>
+
+            <ScrollView x:Name="contactScroll">
                 <ListView x:Name="contactView" 
                           SeparatorColor="#fff" 
                           Scale="1"

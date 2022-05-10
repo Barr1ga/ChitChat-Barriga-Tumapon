@@ -47,13 +47,14 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid Margin="0,0,0,0">
-                                <Frame Padding="0,10,0,10">
+                                <Frame Padding="0,20,0,0"
+                                       BorderColor="#EDEDFF">
                                     <StackLayout Orientation="Horizontal">
                                         <Frame Padding="0"
                                                    CornerRadius="500"
                                                    Margin="1,1,10,1">
                                             <Image Source="@drawable/chatimg.png"
-                                                   WidthRequest="55"
+                                                   WidthRequest="40"
                                                    Aspect="AspectFill"
                                                    />
                                         </Frame>
@@ -62,14 +63,40 @@
                                                    FontSize="16"
                                                    TextColor="#000"
                                                    Text="{Binding name}"
-                                                   Margin="0,5,0,0"/>
+                                                   Margin="0,0,0,0"/>
 
                                             <Label VerticalOptions="Fill"
                                                    FontSize="14"
                                                    Text="{Binding email}"
                                                    TextColor="Gray"
-                                                   Margin="0,0,0,5"/>
+                                                   Margin="0,0,0,0"/>
+
                                         </StackLayout>
+                                        <!--<AbsoluteLayout HorizontalOptions="EndAndExpand">
+                                           <Button BackgroundColor="#8c52ff"
+                                                CornerRadius="50"
+                                                Text="Add Contact"
+                                                Padding="20,0,20,0"
+                                                HeightRequest="40"
+                                                TextColor="#fff"
+                                                FontAttributes="Bold"
+                                                VerticalOptions="Center"
+                                                Clicked="Add_Clicked"
+                                                TextTransform="None">
+                                            </Button>
+
+                                            <Button BackgroundColor="#EDEDFF"
+                                                CornerRadius="50"
+                                                Text="Remove"
+                                                Padding="20,0,20,0"
+                                                
+                                                HeightRequest="40"
+                                                VerticalOptions="Center"
+                                                TextColor="#8c52ff"
+                                                FontAttributes="Bold"
+                                                TextTransform="None">
+                                            </Button>
+                                        </AbsoluteLayout>-->
                                     </StackLayout>
                                 </Frame>
                             </Grid>

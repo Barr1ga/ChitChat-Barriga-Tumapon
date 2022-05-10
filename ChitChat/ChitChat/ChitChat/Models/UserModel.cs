@@ -32,6 +32,9 @@ namespace ChitChat.Models
         int _userType { get; set; }
         public int userType { get { return _userType; } set { _userType = value; OnPropertyChanged(nameof(userType)); } }
 
+        List<string> _contacts { get; set; }
+        public List<string> contacts { get { return _contacts; } set { _contacts = value; OnPropertyChanged(nameof(contacts)); } }
+
         DateTime _created_at { get; set; }
         public DateTime created_at { get { return _created_at; } set { _created_at = value; OnPropertyChanged(nameof(created_at)); } }
 

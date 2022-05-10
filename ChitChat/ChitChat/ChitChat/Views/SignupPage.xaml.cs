@@ -23,6 +23,20 @@ namespace ChitChat.Views
   
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            Username.Text = "";
+            Email.Text = "";
+            Password.Text = "";
+            ConfirmPassword.Text = "";
+            /*
+            if(dataClass.isSignedIn)
+            {
+                await Shell.Current.GoToAsync($"//{nameof(ChatPage)}");
+            }*/
+        }
+
         private void UsernameFocused(object sender, EventArgs e)
         {
             UsernameFrame.BorderColor = Color.FromHex("#d8dae3");

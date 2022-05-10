@@ -32,7 +32,6 @@
                    VerticalOptions="Center"
                    Margin="5, 0, 0, 0"
                    FontSize="18"></Label>
-                
             </Grid>
             <Frame 
                 x:Name="EmailFrame"

@@ -75,8 +75,89 @@ namespace ChitChat.Views
             {
                 return;
             }
-            await DisplayAlert("Would you like to add", select.name, "No", "Yes");
+
+            var answer = await DisplayAlert("Would you like to add", select.name, "YES", "NO");
+            DataClass dataClass = DataClass.GetInstance;
+            Console.WriteLine(dataClass.loggedInUser.contacts);
+            try
+            {
+                if (answer)
+                {
+                    //check if current user selected himself
+                    if (dataClass.loggedInUser.uid == select.uid)
+                    {
+                        await DisplayAlert("Error", "You cannot add yourself", "OK");
+                        return;
+                    }
+
+                    if (dataClass.loggedInUser.contacts != null)
+                    {
+                        if (dataClass.loggedInUser.contacts.Contains(select.uid))
+                        {
+                            await DisplayAlert("Error", "You both already have a connection ", "OK");
+                            return;
+                        }
+                    }
+                    
+
+                    //Yes
+                    ContactModel contact = new ContactModel()
+                    {
+                        id = Guid.NewGuid().ToString(),
+                        contactID = new string[] { dataClass.loggedInUser.uid, select.uid },
+                        contactEmail = new string[] { dataClass.loggedInUser.email, select.email },
+                        contactName = new string[] { dataClass.loggedInUser.name, select.name },
+                        created_at = DateTime.UtcNow
+                    };
+
+                    // Set contact
+                    await CrossCloudFirestore.Current
+                        .Instance
+                        .Collection("contacts")
+                        .Document(contact.id)
+                        .SetAsync(contact);
+
+                    //create new list if current user has no contacts
+                    if (dataClass.loggedInUser.contacts == null)
+                    {
+                        dataClass.loggedInUser.contacts = new List<string>();
+                    }
+
+                    //add to existing or new contact list (inside dataclass)
+                    dataClass.loggedInUser.contacts.Add(select.uid);
+
+                    //update contactlist of current user with updated list
+                    await CrossCloudFirestore.Current
+                        .Instance
+                        .Collection("users")
+                        .Document(dataClass.loggedInUser.uid)
+                        .UpdateAsync(new { contacts = dataClass.loggedInUser.contacts });
+
+                    //create new list if selected user has no contacts
+                    if (select.contacts == null)
+                    {
+                        select.contacts = new List<string>();
+                    }
+
+                    //add to existing or new contact list (inside dataclass)
+                    select.contacts.Add(select.uid);
+
+                    //update contactlist of selected user in firebase with updated list
+                    await CrossCloudFirestore.Current
+                        .Instance
+                        .Collection("users")
+                        .Document(select.uid)
+                        .UpdateAsync(new { contacts = dataClass.loggedInUser.contacts });
+
+                    await DisplayAlert("Success", "Contact added!", "OK");
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
+            
         private void UsersView_ItemTapped(object sender, TappedEventArgs e)
         {
             ((ListView)sender).SelectedItem = null;

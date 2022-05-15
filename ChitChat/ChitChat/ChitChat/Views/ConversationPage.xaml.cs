@@ -7,87 +7,149 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ChitChat.Models;
+using ChitChat.Helpers;
+using Plugin.CloudFirestore;
 
 namespace ChitChat.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    [QueryProperty("ContactUsername", "username")]
+    [QueryProperty(nameof(Username), "username")]
+    [QueryProperty(nameof(ContactID), "contactID")]
     public partial class ConversationPage : ContentPage
     {
-        public string _contactUsername;
-        public string _id = "1";
+        DataClass dataClass = DataClass.GetInstance;
+        List<ConversationModel> conversationList = new List<ConversationModel>();
 
-        public class ModifiedConversationList
+        bool noMessage;
+        bool isBusy;
+        string username;
+        string contactID;
+
+        public bool IsBusy
         {
-            public string converseeID { get; set; }
-            public string message { get; set; }
-            public string backgroundColor { get; set; }
-            public string margin { get; set; }
-            public string imageVisibility { get; set; }
-            public string horizontalOption { get; set; }
-
-
+            get => isBusy;
+            set
+            {
+                isBusy = value;
+                OnPropertyChanged();
+            }
         }
 
-        private List<ModifiedConversationList> Init_List()
+        public string Username
         {
-            List<ModifiedConversationList> modifiedConversationList = new List<ModifiedConversationList>();
-
-            List<ConversationModel> conversationList = new List<ConversationModel>
-                {
-                    new ConversationModel { converseeID = "1", message = "Lorem ipsum dolor sit amet" },
-                    new ConversationModel { converseeID = "2", message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
-                    new ConversationModel { converseeID = "2", message = "Lorem ipsum dolor sit amet" },
-                    new ConversationModel { converseeID = "1", message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
-                    new ConversationModel { converseeID = "1", message = "Lorem ipsum dolor sit amet" },
-                };
-
-            conversationList.ForEach((conversation) =>
+            get => username;
+            set
             {
-                if (conversation.converseeID == _id)
-                {
-                    modifiedConversationList.Add(new ModifiedConversationList
-                    {
-                        converseeID = conversation.converseeID,
-                        message = conversation.message,
-                        backgroundColor = "#8c52ff",
-                        margin = "30,0,0,3",
-                        imageVisibility = "False",
-                        horizontalOption = "EndAndExpand",
-                    });
-                }
-                else
-                {
-                    modifiedConversationList.Add(new ModifiedConversationList
-                    {
-                        converseeID = conversation.converseeID,
-                        message = conversation.message,
-                        backgroundColor = "#edeefc",
-                        margin = "0,0,80,3",
-                        imageVisibility = "True",
-                        horizontalOption = "StartAndExpand",
-                    });
-                }
-            });
+                username = value;
+                ContactName.Text = value;
+                Header.Text = value;
+                OnPropertyChanged();
+            }
+        }
 
-            return modifiedConversationList;
+        public string ContactID
+        {
+            get => contactID;
+            set
+            {
+                contactID = value;
+            }
+        }
+
+        public bool NoMessage
+        {
+            get => noMessage;
+            set
+            {
+                noMessage = value;
+                OnPropertyChanged();
+            }
         }
 
         public ConversationPage()
         {
             InitializeComponent();
-            List<ModifiedConversationList> modifiedConversationList = new List<ModifiedConversationList>();
-            modifiedConversationList = Init_List();
-
-            /*modifiedConversationList
-                .ForEach((conversation) => Console.WriteLine(conversation.backgroundColor));*/
-
-            conversationView.ItemsSource = modifiedConversationList;
+            BindingContext = this;
         }
-        public string ContactUsername
+
+        protected override async void OnAppearing()
         {
-            get => _contactUsername;
-            set => Header.Text = value;
+            LoadConversation();
+            base.OnAppearing();
+        }
+
+        public async void LoadConversation()
+        {
+            try
+            {
+                IsBusy = true;
+                CrossCloudFirestore.Current
+                .Instance
+                .Collection("contacts")
+                .Document(contactID)
+                .Collection("conversations")
+                .OrderBy("created_at", false)
+                .AddSnapshotListener((snapshot, error) =>
+                {
+                    IsBusy = true;
+                    conversationView.ItemsSource = conversationList;
+                    if (snapshot != null)
+                    {
+                        foreach (var documentChange in snapshot.DocumentChanges)
+                        {
+                            var obj = documentChange.Document.ToObject<ConversationModel>();
+                            switch (documentChange.Type)
+                            {
+                                case DocumentChangeType.Added:
+                                    conversationList.Add(obj);
+                                    break;
+                                case DocumentChangeType.Modified:
+                                    if (conversationList.Where(c => c.id == obj.id).Any())
+                                    {
+                                        var item = conversationList.Where(c => c.id == obj.id).FirstOrDefault();
+                                        item = obj;
+                                    }
+                                    break;
+                                case DocumentChangeType.Removed:
+                                    if (conversationList.Where(c => c.id == obj.id).Any())
+                                    {
+                                        var item = conversationList.Where(c => c.id == obj.id).FirstOrDefault();
+                                        conversationList.Remove(item);
+                                    }
+                                    break;
+                            }
+
+
+                            var conv = conversationView.ItemsSource.Cast<object>().LastOrDefault();
+                            conversationView.ScrollTo(conv, ScrollToPosition.End, false);
+                        }
+                    }
+
+                    NoMessage = conversationList.Count == 0;
+                    conversationScroll.IsVisible = !(conversationList.Count == 0);
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            {
+                await Task.Delay(1000);
+                IsBusy = false;
+                noMessage = false;
+            }
+            /*
+            var document = await CrossCloudFirestore.Current
+                .Instance
+                .Collection("contacts")
+                .Document(contactID)
+                .Collection("conversations")
+                .GetAsync();
+            var model = document.ToObjects<ConversationModel>();
+            conversationList = model.ToList();
+            conversationView.ItemsSource = conversationList;
+            conversationScroll.IsVisible = true;*/
         }
 
         private void ToggleSendButton(object sender, System.EventArgs e)
@@ -101,8 +163,27 @@ namespace ChitChat.Views
             }
         }
 
-        private void SendMessage(object sender, System.EventArgs e)
+        private async void SendMessage(object sender, System.EventArgs e)
         {
+            string ID = Guid.NewGuid().ToString();
+            ConversationModel conversation = new ConversationModel()
+            {
+                id = ID,
+                converseeID = dataClass.loggedInUser.uid,
+                message = Message.Text,
+                created_at = DateTime.UtcNow
+            };
+
+            //conversation
+            await CrossCloudFirestore.Current
+                .Instance
+                .Collection("contacts")
+                .Document(contactID)
+                .Collection("conversations")
+                .Document(ID)
+                .SetAsync(conversation);
+
+            Message.Text = "";
         }
     }
 }

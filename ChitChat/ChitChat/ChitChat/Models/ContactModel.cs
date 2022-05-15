@@ -14,11 +14,11 @@ namespace ChitChat.Models {
             string[] _contactID { get; set; }
             public string[] contactID { get {return _contactID;} set { _contactID = value; OnPropertyChanged(nameof(contactID)); }}
 
-            string _contactName { get; set; }
-            public string contactName { get {return _contactName;} set { _contactName = value; OnPropertyChanged(nameof(contactName)); }}
+            string[] _contactName { get; set; }
+            public string[] contactName { get {return _contactName;} set { _contactName = value; OnPropertyChanged(nameof(contactName)); }}
 
-            string _contactEmail { get; set; }
-            public string contactEmail { get {return _contactEmail;} set { _contactEmail = value; OnPropertyChanged(nameof(contactEmail)); }}
+            string[] _contactEmail { get; set; }
+            public string[] contactEmail { get {return _contactEmail;} set { _contactEmail = value; OnPropertyChanged(nameof(contactEmail)); }}
 
             DateTime _created_at { get; set; }
             public DateTime created_at { get {return _created_at; } set { _created_at = value; OnPropertyChanged(nameof(created_at)); }}

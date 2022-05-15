@@ -5,7 +5,11 @@
              x:Class="ChitChat.Views.ConversationPage"
              Shell.FlyoutBehavior="Disabled"
              Shell.TabBarIsVisible="False" 
-             BackgroundColor="#fff">
+             Shell.ForegroundColor="#8c52ff"
+             BackgroundColor="#fff"
+             >
+
+   
 
     <Shell.TitleView>
         <Grid ColumnSpacing="10">
@@ -34,88 +38,52 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20,15,20,0" >
-            <!--<ScrollView VerticalOptions="EndAndExpand">
-                <StackLayout>
+            <StackLayout IsVisible="{Binding NoMessage}" 
+                         VerticalOptions="EndAndExpand"
+                         Margin="0,0,0,20">
+                <controls:CircleImage Source="@drawable/chatimg.png" 
+                                      WidthRequest="100" 
+                                      HeightRequest="100" 
+                                      HorizontalOptions="Center" 
+                                      VerticalOptions="Center" 
+                                      Scale="1">
+                </controls:CircleImage>
+                <Label 
+                   x:Name="ContactName"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#000"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   VerticalOptions="CenterAndExpand"
+                   />
+                <Label 
+                   Text="ChitChat" 
+                   HorizontalTextAlignment="Center"
+                   TextColor="#8c52ff"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   VerticalOptions="CenterAndExpand"
+                   />
+                <Label 
+                   Text="You can now start a conversation" 
+                   FontSize="16" 
+                   HorizontalTextAlignment="Center"
+                   TextColor="#636370"
+                   VerticalOptions="CenterAndExpand"
+                   />
+                <Label 
+                   Text="with this person" 
+                   FontSize="16" 
+                   HorizontalTextAlignment="Center"
+                   TextColor="#636370"
+                   VerticalOptions="CenterAndExpand"
+                   />
+            </StackLayout>
+            
 
-        
-                    <Grid ColumnSpacing="10" HorizontalOptions="Start">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="35"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="35"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Frame Padding="0"
-                               Margin="1"
-                               Grid.Column="0"
-                               Grid.Row="1"
-                               CornerRadius="25">
-                            <Image Source="@drawable/chatimg.png"
-                                      HeightRequest="40"
-                                      Aspect="AspectFill"
-                                      />
-                        </Frame>
-                        <Frame
-                        CornerRadius="25"
-                        Grid.Column="1"
-                        Grid.Row="0"
-                        Grid.RowSpan="2"
-                        Padding="15,10,15,15"
-                        Margin="0,0,80,3"
-                        HasShadow="False"
-                        BackgroundColor="#edeefc">
-                            <Label 
-                            Text="Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem "
-                            FontSize="16"
-                            ></Label>
-                        </Frame>
-                    </Grid>
-
-             
-                    <Grid ColumnSpacing="10" HorizontalOptions="End">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="35"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="35"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Frame Padding="0"
-                               Margin="1"
-                               Grid.Column="1"
-                               Grid.Row="1"
-                               CornerRadius="25">
-                            <Image Source="@drawable/chatimg.png"
-                                      HeightRequest="40"
-                                      Aspect="AspectFill"
-                                      />
-                        </Frame>
-                        <Frame
-                        CornerRadius="25"
-                        Grid.Column="0"
-                        Grid.Row="0"
-                        Grid.RowSpan="2"
-                        Padding="15,10,15,15"
-                        Margin="80,0,0,0"
-                        HasShadow="False"
-                        BackgroundColor="#8c52ff">
-                            <Label 
-                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                            TextColor="#fff"
-                            FontSize="16"
-                            ></Label>
-                        </Frame>
-                    </Grid>
-
-                </StackLayout>
-            </ScrollView>-->
-
-            <ScrollView>
+            <ScrollView x:Name="conversationScroll">
                 <ListView x:Name="conversationView" 
-                          SeparatorColor="#fff" 
+                          SeparatorVisibility="None"
                           Scale="1"
                           SelectionMode="Single"
                           VerticalScrollBarVisibility="Never"
@@ -124,76 +92,81 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Margin="0,0,0,0">
-                                    <Frame Padding="0,0,0,0">
-                                        <Grid ColumnSpacing="10" HorizontalOptions="{Binding horizontalOption}">
+                                <ContentView>
+                                    <Grid Margin="0,0,0,0">
+                                        <Frame Padding="0,0,0,0">
+                                            <Grid ColumnSpacing="10" HorizontalOptions="Start">
+                                                <Grid.Triggers>
+                                                    <DataTrigger TargetType="Grid" Binding="{Binding ., Converter={StaticResource isViewerConverter}}" Value="True">
+                                                        <Setter Property="HorizontalOptions" Value="End"></Setter>
+                                                    </DataTrigger>
+                                                </Grid.Triggers>
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="7"></RowDefinition>
+                                                    <RowDefinition Height="0"></RowDefinition>
                                                     <RowDefinition Height="35"></RowDefinition>
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="35"></ColumnDefinition>
+                                                    <ColumnDefinition Width="40"></ColumnDefinition>
                                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                                 </Grid.ColumnDefinitions>
 
                                                 <Frame Padding="0"
-                                                       Margin="1"
-                                                       Grid.Column="0"
-                                                       Grid.Row="1"
-                                                       CornerRadius="25"
-                                                       IsVisible="{Binding imageVisibility}">
+                                                     Margin="1"
+                                                     Grid.Column="0"
+                                                     Grid.Row="1"
+                                                     Grid.RowSpan="2"
+                                                     CornerRadius="25"
+                                                     VerticalOptions="End"
+                                                     IsVisible="{Binding imageVisibility}">
+                                                    <Frame.Triggers>
+                                                        <DataTrigger TargetType="Frame" Binding="{Binding ., Converter={StaticResource isViewerConverter}}" Value="True">
+                                                            <Setter Property="IsVisible" Value="False"></Setter>
+                                                        </DataTrigger>
+                                                    </Frame.Triggers>
                                                     <Image Source="@drawable/chatimg.png"
-                                                          HeightRequest="40"
-                                                          Aspect="AspectFill"
-                                                    />
+                                                        HeightRequest="40"
+                                                        WidthRequest="40"
+                                                        Aspect="AspectFill"
+                                                        />
                                                 </Frame>
                                                 <Frame
-                                                        CornerRadius="25"
-                                                        Grid.Column="1"
-                                                        Grid.Row="1"
-                                                        Grid.RowSpan="2"
-                                                        Padding="15,10,15,15"
-                                                        HasShadow="False"
-                                                        
-                                                        Margin="{Binding margin}"
-                                                        BackgroundColor="{Binding backgroundColor}">
+                                                     CornerRadius="25"
+                                                     Grid.Column="1"
+                                                     Grid.Row="1"
+                                                     Grid.RowSpan="2"
+                                                     Padding="15,10,15,15"
+                                                     HasShadow="False"
+                                                     BackgroundColor="#edeefc"
+                                                     >
+                                                    <Frame.Triggers>
+                                                        <DataTrigger TargetType="Frame" Binding="{Binding ., Converter={StaticResource isViewerConverter}}" Value="True">
+                                                            <Setter Property="BackgroundColor" Value="#8c52ff"></Setter>
+                                                            <Setter Property="HasShadow" Value="False"></Setter>
+                                                        </DataTrigger>
+                                                    </Frame.Triggers>
                                                     <Label 
-                                                    Text="{Binding message}"
-                                                    FontSize="16"
-                                                    ></Label>
+                                                        Text="{Binding message}"
+                                                        FontSize="16"
+                                                    >
+                                                        <Label.Triggers>
+                                                            <DataTrigger TargetType="Label" Binding="{Binding ., Converter={StaticResource isViewerConverter}}" Value="True">
+                                                                <Setter Property="TextColor" Value="#fff"></Setter>
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                    
                                                 </Frame>
                                             </Grid>
-
-
-
-                                        <!--<StackLayout VerticalOptions="Center" Orientation="Horizontal">
-                                            <Frame Padding="0"
-                                                       Margin="1"
-                                                       Grid.Column="0"
-                                                       Grid.Row="1"
-                                                       WidthRequest="40"
-                                                       CornerRadius="25">
-                                                <Image Source="@drawable/chatimg.png"
-                                                              HeightRequest="40"
-                                                              Aspect="AspectFill"
-                                                  />
-                                            </Frame>
-                                            <Label VerticalOptions="Fill"
-                                                   FontSize="14"
-                                                   Text="{Binding message}"
-                                                   TextColor="Gray"
-                                                   Margin="0,0,0,5"/>
-                                        </StackLayout>-->
-
-                                    </Frame>
-                                </Grid>
-                            </ViewCell>
+                                        </Frame>
+                                    </Grid>
+                                </ContentView>
+                                </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollView>
 
-            <Grid ColumnSpacing="10" HeightRequest="70" Margin="0,0,0,7">
+            <Grid ColumnSpacing="10" HeightRequest="70" Margin="0,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>

@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChitChat.App">
+             x:Class="ChitChat.App"
+             xmlns:local="clr-namespace:ChitChat;assembly=ChitChat"
+             >
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
     <Application.Resources>
         <ResourceDictionary>
+            <local:IsViewerConverter x:Key="isViewerConverter" />
+            <local:IsOwnerConverter x:Key="isOwnerConverter" />
             <Color x:Key="Primary">#8c52ff</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>

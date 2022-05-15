@@ -4,8 +4,11 @@
              x:Class="ChitChat.Views.ProfilePage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="True"
              Shell.NavBarIsVisible="False"
+             BackgroundColor="#fff"
              >
+
     <ContentPage.Content>
         <StackLayout Padding="20,20,20,20" >
             <Grid 
@@ -20,8 +23,7 @@
                          x:Name="outerRing" 
                          StrokeThickness="7" 
                          Stroke="#e6e6e6" 
-                         
-                         Scale=".7"
+                         Scale=".8"
                          HorizontalOptions="CenterAndExpand" 
                          VerticalOptions="CenterAndExpand">
                 </Ellipse>
@@ -33,7 +35,7 @@
                          Stroke="#8c52ff" 
                          HorizontalOptions="CenterAndExpand" 
                          VerticalOptions="CenterAndExpand" 
-                         Scale=".75">
+                         Scale=".85">
                 </Ellipse>
 
                 <controls:CircleImage Source="@drawable/profile_picture.jpg" 
@@ -41,7 +43,7 @@
                                       HeightRequest="100" 
                                       HorizontalOptions="Center" 
                                       VerticalOptions="Center" 
-                                      Scale="1.04">
+                                      Scale="1.17">
                 </controls:CircleImage>
             </Grid>
             <Label 
@@ -58,7 +60,7 @@
                    Text="" 
                    HorizontalOptions="Center" 
                    VerticalOptions="Center" 
-                   TextColor="DimGray" 
+                   TextColor="#636370" 
                    FontAttributes="Bold"
                    FontSize="16">
             </Label>

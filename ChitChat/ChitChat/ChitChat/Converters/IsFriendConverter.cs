@@ -21,14 +21,16 @@ namespace ChitChat.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool retval = false;
+
             if (value != null)
             {
-                UserModel contact = value as UserModel;
+                UserModel user = value as UserModel;
 
-                if (dataClass.loggedInUser.contacts.Contains(contact.uid))
+                if (dataClass.loggedInUser.contacts.Contains(user.uid))
                 {
                     retval = true;
                 }
+
             }
             return retval;
         }

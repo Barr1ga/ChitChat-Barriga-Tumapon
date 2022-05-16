@@ -91,7 +91,9 @@
                                                     FontAttributes="Bold"
                                                     VerticalOptions="Center"
                                                     TextTransform="None"
-                                                    CommandParameter="{Binding .}" Clicked="Add_Clicked">
+                                                    IsVisible="True"
+                                                    CommandParameter="{Binding .}" Clicked="Add_Clicked" 
+                                                    >
                                                     <Button.Triggers>
                                                         <DataTrigger TargetType="Button" Binding="{Binding ., Converter={StaticResource isFriendConverter}}" Value="True">
                                                             <Setter Property="IsVisible" Value="False"></Setter>
@@ -108,6 +110,7 @@
                                                     WidthRequest="90"
                                                     FontAttributes="Bold"
                                                     VerticalOptions="Center"
+                                                    IsVisible="False"
                                                     TextTransform="None">
                                                     <Button.Triggers>
                                                         <DataTrigger TargetType="Button" Binding="{Binding ., Converter={StaticResource isFriendConverter}}" Value="True">

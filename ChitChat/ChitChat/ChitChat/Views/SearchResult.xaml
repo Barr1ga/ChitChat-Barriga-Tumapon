@@ -96,7 +96,7 @@
                                                     >
                                                     <Button.Triggers>
                                                         <DataTrigger TargetType="Button" Binding="{Binding ., Converter={StaticResource isFriendConverter}}" Value="True">
-                                                            <Setter Property="IsVisible" Value="False" />
+                                                            <Setter Property="IsVisible" Value="False"></Setter>
                                                         </DataTrigger>
                                                     </Button.Triggers>
                                                 </Button>

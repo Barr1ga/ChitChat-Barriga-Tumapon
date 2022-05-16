@@ -17,6 +17,7 @@ namespace ChitChat.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+            
             var density = Resources.DisplayMetrics.Density;
             App.screenHeight = Resources.DisplayMetrics.WidthPixels / density;
             App.screenHeight = Resources.DisplayMetrics.HeightPixels / density;

@@ -21,6 +21,7 @@ namespace ChitChat.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool retval = false;
+
             if (value != null)
             {
                 UserModel contact = value as UserModel;
@@ -30,6 +31,7 @@ namespace ChitChat.Converters
                     retval = true;
                 }
             }
+            
             return retval;
         }
 

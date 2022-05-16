@@ -11,7 +11,7 @@ using ChitChat.Droid;
 
 namespace ChitChat
 {
-    [Activity(Label = "ChitChat", Icon = "@mipmap/icon", Theme = "@style/splashscreen", MainLauncher = true, NoHistory = true)]
+    [Activity(Label = "ChitChat", Icon = "@mipmap/ic_launcher", Theme = "@style/splashscreen", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : AppCompatActivity
     {
         protected override void OnResume()

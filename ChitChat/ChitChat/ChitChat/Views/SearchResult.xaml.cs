@@ -29,23 +29,6 @@ namespace ChitChat.Views
             }
         }
 
-        /*private List<UserModel> Init_List()
-        {
-            List<UserModel> userList = new List<UserModel>()
-              {
-                    new UserModel { name = "Horeb", email = "horeb@gmail.com" },
-                    new UserModel { name = "Van AJ", email = "van@gmail.com" },
-                    new UserModel { name = "CJ", email = "cj@gmail.com" },
-                    new UserModel { name = "AJ", email = "aj@gmail.com" },
-                    new UserModel { name = "Edwin", email = "edwin@gmail.com" },
-                    new UserModel { name = "Chris", email = "chris@gmail.com" },
-                    new UserModel { name = "Nikolai", email = "nikolai@gmail.com" },
-                    new UserModel { name = "Nina", email = "nina@gmail.com" },
-              };
-
-            return userList;
-        }*/
-
         public SearchResult()
         {
             InitializeComponent();
@@ -183,7 +166,6 @@ namespace ChitChat.Views
             }
             finally
             {
-                await Task.Delay(200);
                 IsBusy = false;
             }
 

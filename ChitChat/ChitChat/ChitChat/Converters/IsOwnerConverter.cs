@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
-namespace ChitChat
+namespace ChitChat.Converters
 {
     public class IsOwnerConverter : IValueConverter
     {
@@ -21,9 +21,9 @@ namespace ChitChat
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool retval = false;
-            string[] users = value as string[];
+            string[] contactID = value as string[];
 
-            if (users[0].Equals(dataClass.loggedInUser.uid))
+            if (contactID[0].Equals(dataClass.loggedInUser.uid))
             {
                 retval = true;
             }

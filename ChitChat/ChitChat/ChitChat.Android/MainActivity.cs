@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Firebase;
+using Xamarin.Forms;
 
 namespace ChitChat.Droid
 {
@@ -13,6 +14,23 @@ namespace ChitChat.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
+
+            var density = Resources.DisplayMetrics.Density;
+            App.screenHeight = Resources.DisplayMetrics.WidthPixels / density;
+            App.screenHeight = Resources.DisplayMetrics.HeightPixels / density;
+
+            if (Xamarin.Forms.Device.Idiom == TargetIdiom.Phone)
+            {
+                App.screenHeight = (16 * App.screenWidth) / 9;
+            }
+
+            if (Xamarin.Forms.Device.Idiom == TargetIdiom.Phone)
+            {
+                App.screenWidth = (9 * App.screenHeight) / 16;
+            }
+
             base.OnCreate(savedInstanceState);
             FirebaseApp.InitializeApp(this);
 

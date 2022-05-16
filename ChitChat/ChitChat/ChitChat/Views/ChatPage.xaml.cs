@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using ChitChat.Models;
 using ChitChat.Helpers;
 using Plugin.CloudFirestore;
+using System.Collections.ObjectModel;
 
 namespace ChitChat.Views
 {
@@ -16,7 +17,7 @@ namespace ChitChat.Views
     public partial class ChatPage : ContentPage
     {
         DataClass dataClass = DataClass.GetInstance;
-        List<ContactModel> contactList = new List<ContactModel>();
+        ObservableCollection<ContactModel> contactList = new ObservableCollection<ContactModel>();
         bool noContact;
         bool isBusy;
 
@@ -108,20 +109,14 @@ namespace ChitChat.Views
         private async void ContactView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             ContactModel contact = ((ListView)sender).SelectedItem as ContactModel;
+
             if(contact == null)
             {
                 return;
             }
 
             string contactName;
-            if (dataClass.loggedInUser.uid == contact.contactName[0])
-            {
-                contactName = contact.contactName[0];
-            }
-            else
-            {
-                contactName = contact.contactName[1];
-            }
+            contactName = dataClass.loggedInUser.uid == contact.contactID[0] ? contact.contactName[1] : contact.contactName[0];
             
             string id = contact.id;
             await Shell.Current.GoToAsync($"/{nameof(ConversationPage)}?username={contactName}&contactID={id}");

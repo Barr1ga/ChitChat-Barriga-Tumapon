@@ -68,9 +68,9 @@ namespace ChitChat.Views
             IsBusy = false;
         }
 
-        async void UsersView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void Add_Clicked(object sender, EventArgs e)
         {
-            var select = ((ListView)sender).SelectedItem as UserModel;
+            var select = (UserModel)((Button)sender).CommandParameter;
             if (select == null)
             {
                 return;
@@ -189,15 +189,6 @@ namespace ChitChat.Views
 
         }
 
-        private async void Add_Clicked(object sender, EventArgs e)
-        {
-            var select = ((ListView)sender).SelectedItem as UserModel;
-            if (select == null)
-            {
-                return;
-            }
-            await DisplayAlert("Would you like to add", select.name, "No", "Yes");
-        }
     }
 
 }

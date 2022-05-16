@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomEditorRenderer.cs" />
+    <Compile Include="CustomListViewRenderer.cs" />
     <Compile Include="CustomEntryRenderer.cs" />
     <Compile Include="CustomSearchBarRenderer.cs" />
     <Compile Include="DependencyServices\FirebaseAuthService.cs" />

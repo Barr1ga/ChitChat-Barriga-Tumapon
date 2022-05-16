@@ -60,7 +60,7 @@
                    Text="" 
                    HorizontalOptions="Center" 
                    VerticalOptions="Center" 
-                   TextColor="#636370" 
+                   TextColor="#9797a6" 
                    FontAttributes="Bold"
                    FontSize="16">
             </Label>

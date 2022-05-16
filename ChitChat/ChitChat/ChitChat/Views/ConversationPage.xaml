@@ -26,7 +26,7 @@
                                       Scale="1">
             </controls:CircleImage>
             <Label x:Name="Header"
-                   TextColor="Black"
+                   TextColor="#0a021c"
                    FontAttributes="Bold"
                    Grid.Column="1"
                    HorizontalOptions="Start"
@@ -37,7 +37,7 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <StackLayout Padding="20,15,20,0" >
+        <StackLayout Padding="20,0,20,0" >
             <StackLayout IsVisible="{Binding NoMessage}" 
                          VerticalOptions="EndAndExpand"
                          Margin="0,0,0,20">
@@ -51,7 +51,7 @@
                 <Label 
                    x:Name="ContactName"
                    HorizontalTextAlignment="Center"
-                   TextColor="#000"
+                   TextColor="#0a021c"
                    FontSize="24"
                    FontAttributes="Bold"
                    VerticalOptions="CenterAndExpand"
@@ -66,16 +66,18 @@
                    />
                 <Label 
                    Text="You can now start a conversation" 
-                   FontSize="16" 
+                   FontSize="14" 
+                   FontAttributes="Bold"
                    HorizontalTextAlignment="Center"
-                   TextColor="#636370"
+                   TextColor="#9797a6"
                    VerticalOptions="CenterAndExpand"
                    />
                 <Label 
                    Text="with this person" 
-                   FontSize="16" 
+                   FontSize="14" 
                    HorizontalTextAlignment="Center"
-                   TextColor="#636370"
+                   FontAttributes="Bold"
+                   TextColor="#9797a6"
                    VerticalOptions="CenterAndExpand"
                    />
             </StackLayout>
@@ -87,6 +89,7 @@
                           Scale="1"
                           SelectionMode="Single"
                           VerticalScrollBarVisibility="Never"
+                          HorizontalScrollBarVisibility="Never"
                           Visual="Material"
                           HasUnevenRows="True">
                     <ListView.ItemTemplate>
@@ -116,6 +119,7 @@
                                                      Grid.Row="1"
                                                      Grid.RowSpan="2"
                                                      CornerRadius="25"
+                                                     HasShadow="False"
                                                      VerticalOptions="End"
                                                      IsVisible="{Binding imageVisibility}">
                                                     <Frame.Triggers>
@@ -137,11 +141,13 @@
                                                      Padding="15,10,15,15"
                                                      HasShadow="False"
                                                      BackgroundColor="#edeefc"
+                                                     Margin="0,0,30,0"
                                                      >
                                                     <Frame.Triggers>
                                                         <DataTrigger TargetType="Frame" Binding="{Binding ., Converter={StaticResource isViewerConverter}}" Value="True">
                                                             <Setter Property="BackgroundColor" Value="#8c52ff"></Setter>
                                                             <Setter Property="HasShadow" Value="False"></Setter>
+                                                            <Setter Property="Margin" Value="30,0,0,0"></Setter>
                                                         </DataTrigger>
                                                     </Frame.Triggers>
                                                     <Label 
@@ -166,7 +172,10 @@
                 </ListView>
             </ScrollView>
 
-            <Grid ColumnSpacing="10" HeightRequest="70" Margin="0,0,0,0">
+            <Grid ColumnSpacing="10" 
+                  Margin="0,0,0,0" 
+                  Padding="0,0,0,8"
+                  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -177,10 +186,10 @@
 
                 <Frame x:Name="MessageFrame"
                 BorderColor="#d8dae3" 
-                CornerRadius="50" 
-                HeightRequest="45"
+                CornerRadius="25" 
                 HasShadow="False"
                 Margin="0,2.5,0,2.5" 
+                MinimumHeightRequest="100"
                 Grid.Column="0"
                 Padding="0">
                     <Editor 
@@ -190,8 +199,8 @@
                     Text=""
                     MaxLength="240"
                     TextChanged="ToggleSendButton"
-                    MinimumWidthRequest="50"
-                    Placeholder="Write a message..." >
+                    MinimumHeightRequest="50"
+                    Placeholder="Aa" >
                     </Editor>
                 </Frame>
                 <ImageButton

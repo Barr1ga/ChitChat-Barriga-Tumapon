@@ -42,6 +42,7 @@ namespace ChitChat.Droid
                         email = FirebaseAuth.Instance.CurrentUser.Email,
                         name = dataClass.loggedInUser.name,
                         userType = dataClass.loggedInUser.userType,
+                        contacts = dataClass.loggedInUser.contacts,
                         created_at = dataClass.loggedInUser.created_at
                     };
                     dataClass.isSignedIn = true;
@@ -71,15 +72,16 @@ namespace ChitChat.Droid
                                         .GetCollection("users")
                                         .GetDocument(result.User.Uid)
                                         .GetDocumentAsync();
-                    var yourModel = document.ToObject<UserModel>();
+                    var user = document.ToObject<UserModel>();
 
                     dataClass.loggedInUser = new UserModel()
                     {
                         uid = result.User.Uid,
                         email = result.User.Email,
-                        name = yourModel.name,
-                        userType = yourModel.userType,
-                        created_at = yourModel.created_at
+                        name = user.name,
+                        userType = user.userType,
+                        contacts = user.contacts,
+                        created_at = user.created_at
                     };
                     dataClass.isSignedIn = true;
                 }
@@ -153,6 +155,7 @@ namespace ChitChat.Droid
                     email = email,
                     name = defaultName,
                     userType = 0,
+                    contacts = new List<string>(),
                     created_at = DateTime.UtcNow
                 };
                 return response;

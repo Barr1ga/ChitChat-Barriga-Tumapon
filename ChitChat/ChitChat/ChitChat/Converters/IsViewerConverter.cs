@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
-namespace ChitChat
+namespace ChitChat.Converters
 {
     public class IsViewerConverter : IValueConverter
     {

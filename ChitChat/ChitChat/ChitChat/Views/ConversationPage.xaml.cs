@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using ChitChat.Models;
 using ChitChat.Helpers;
 using Plugin.CloudFirestore;
+using System.Collections.ObjectModel;
 
 namespace ChitChat.Views
 {
@@ -18,7 +19,7 @@ namespace ChitChat.Views
     public partial class ConversationPage : ContentPage
     {
         DataClass dataClass = DataClass.GetInstance;
-        List<ConversationModel> conversationList = new List<ConversationModel>();
+        ObservableCollection<ConversationModel> conversationList = new ObservableCollection<ConversationModel>();
 
         bool noMessage;
         bool isBusy;
@@ -68,6 +69,12 @@ namespace ChitChat.Views
 
         public ConversationPage()
         {
+            Console.WriteLine("test");
+            Console.WriteLine(contactID);
+            if (contactID != null)
+            {
+                LoadConversation();
+            }
             InitializeComponent();
             BindingContext = this;
         }
@@ -78,7 +85,7 @@ namespace ChitChat.Views
             base.OnAppearing();
         }
 
-        public async void LoadConversation()
+        public void LoadConversation()
         {
             try
             {
@@ -92,7 +99,6 @@ namespace ChitChat.Views
                 .AddSnapshotListener((snapshot, error) =>
                 {
                     IsBusy = true;
-                    conversationView.ItemsSource = conversationList;
                     if (snapshot != null)
                     {
                         foreach (var documentChange in snapshot.DocumentChanges)
@@ -119,7 +125,6 @@ namespace ChitChat.Views
                                     break;
                             }
 
-
                             var conv = conversationView.ItemsSource.Cast<object>().LastOrDefault();
                             conversationView.ScrollTo(conv, ScrollToPosition.End, false);
                         }
@@ -128,6 +133,8 @@ namespace ChitChat.Views
                     NoMessage = conversationList.Count == 0;
                     conversationScroll.IsVisible = !(conversationList.Count == 0);
                 });
+                
+                conversationView.ItemsSource = conversationList;
             }
             catch (Exception ex)
             {
@@ -135,21 +142,10 @@ namespace ChitChat.Views
                 throw;
             }
             {
-                await Task.Delay(1000);
                 IsBusy = false;
                 noMessage = false;
             }
-            /*
-            var document = await CrossCloudFirestore.Current
-                .Instance
-                .Collection("contacts")
-                .Document(contactID)
-                .Collection("conversations")
-                .GetAsync();
-            var model = document.ToObjects<ConversationModel>();
-            conversationList = model.ToList();
-            conversationView.ItemsSource = conversationList;
-            conversationScroll.IsVisible = true;*/
+      
         }
 
         private void ToggleSendButton(object sender, System.EventArgs e)
@@ -165,10 +161,14 @@ namespace ChitChat.Views
 
         private async void SendMessage(object sender, System.EventArgs e)
         {
-            string ID = Guid.NewGuid().ToString();
+            if (string.IsNullOrEmpty(Message.Text))
+            {
+                return;
+            }
+
             ConversationModel conversation = new ConversationModel()
             {
-                id = ID,
+                id = Guid.NewGuid().ToString(),
                 converseeID = dataClass.loggedInUser.uid,
                 message = Message.Text,
                 created_at = DateTime.UtcNow
@@ -180,7 +180,7 @@ namespace ChitChat.Views
                 .Collection("contacts")
                 .Document(contactID)
                 .Collection("conversations")
-                .Document(ID)
+                .Document(conversation.id)
                 .SetAsync(conversation);
 
             Message.Text = "";

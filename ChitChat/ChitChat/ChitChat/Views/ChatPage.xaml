@@ -73,7 +73,7 @@
                    Text="You have no contacts as of the moment" 
                    FontSize="16" 
                    HorizontalTextAlignment="Center"
-                   TextColor="#636370"
+                   TextColor="#9797a6"
                    VerticalOptions="CenterAndExpand"
                    IsVisible="{Binding NoContact}"/>
 
@@ -107,6 +107,7 @@
                                                    FontSize="16"
                                                    TextColor="#000"
                                                    Text="{Binding contactName[0]}"
+                                                   FontAttributes="Bold"
                                                    Margin="0,5,0,0">
                                                     <Label.Triggers>
                                                         <DataTrigger TargetType="Label" Binding="{Binding contactID, Converter={StaticResource isOwnerConverter}}" Value="True">

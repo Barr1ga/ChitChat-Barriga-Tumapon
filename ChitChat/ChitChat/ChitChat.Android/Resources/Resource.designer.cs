@@ -14,7 +14,7 @@ namespace ChitChat.Droid
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.2.0.155")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.2.4.160")]
 	public partial class Resource
 	{
 		
@@ -25986,6 +25986,12 @@ namespace ChitChat.Droid
 			// aapt resource value: 0x7F0F00E8
 			public const int EmptyTheme = 2131689704;
 			
+			// aapt resource value: 0x7F0F02F9
+			public const int homeToolbarNavigationButtonStyle = 2131690233;
+			
+			// aapt resource value: 0x7F0F02FA
+			public const int homeToolbarStyle = 2131690234;
+			
 			// aapt resource value: 0x7F0F00E9
 			public const int MainTheme = 2131689705;
 			
@@ -26208,11 +26214,11 @@ namespace ChitChat.Droid
 			// aapt resource value: 0x7F0F0132
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131689778;
 			
-			// aapt resource value: 0x7F0F02F9
-			public const int scrollViewScrollBars = 2131690233;
+			// aapt resource value: 0x7F0F02FB
+			public const int scrollViewScrollBars = 2131690235;
 			
-			// aapt resource value: 0x7F0F02FA
-			public const int scrollViewTheme = 2131690234;
+			// aapt resource value: 0x7F0F02FC
+			public const int scrollViewTheme = 2131690236;
 			
 			// aapt resource value: 0x7F0F0139
 			public const int ShapeAppearanceOverlay = 2131689785;
@@ -26277,8 +26283,8 @@ namespace ChitChat.Droid
 			// aapt resource value: 0x7F0F0138
 			public const int ShapeAppearance_MaterialComponents_Tooltip = 2131689784;
 			
-			// aapt resource value: 0x7F0F02FB
-			public const int splashscreen = 2131690235;
+			// aapt resource value: 0x7F0F02FD
+			public const int splashscreen = 2131690237;
 			
 			// aapt resource value: 0x7F0F014D
 			public const int TestStyleWithLineHeight = 2131689805;

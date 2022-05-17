@@ -112,8 +112,7 @@
                 VerticalOptions="Center" 
                 Text="Login with Google" 
                 CornerRadius="50"
-                TextTransform="None"
-                Clicked="LoginClicked">
+                TextTransform="None">
                 </Button>
                 <ImageButton 
                     VerticalOptions="Center"
@@ -133,8 +132,7 @@
                 VerticalOptions="Center" 
                 Text="Login with Facebook" 
                 CornerRadius="50"
-                TextTransform="None"
-                Clicked="LoginClicked">
+                TextTransform="None">
                 </Button>
                 <ImageButton 
                     VerticalOptions="Center"

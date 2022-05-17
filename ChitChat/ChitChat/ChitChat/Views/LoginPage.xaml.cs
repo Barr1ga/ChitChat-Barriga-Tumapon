@@ -65,24 +65,22 @@ namespace ChitChat.Views
                 return;
             }
 
-            //If not verified*/
-            /*if (email)
-            {
-                PasswordFrame.BorderColor = Color.Red;
-                EmailFrame.BorderColor = Color.Red;
-                DisplayAlert("Login Failed", "Your email is not verified. We have sent another verification email.", "OK");
-                return;
-            }*/
-
             //setloading == true
             FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
             res = await DependencyService.Get<iFirebaseAuth>().LoginWithEmailPassword(Email.Text, Password.Text);
 
             if (res.Status == false)
             {
-                PasswordFrame.BorderColor = Color.Red;
-                EmailFrame.BorderColor = Color.Red;
-                await DisplayAlert("Login Failed", res.Response + "Please try again.", "OK");
+                if (res.Response.Contains("The email address is badly formatted"))
+                {
+                    EmailFrame.BorderColor = Color.Red;
+                } 
+                else 
+                {
+                    PasswordFrame.BorderColor = Color.Red;
+                    EmailFrame.BorderColor = Color.Red;
+                }
+                await DisplayAlert("Login Failed", res.Response + ". Please try again.", "OK");
                 return;
             }
             //setloading = false;

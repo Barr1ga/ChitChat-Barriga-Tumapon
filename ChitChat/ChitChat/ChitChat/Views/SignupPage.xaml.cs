@@ -121,7 +121,12 @@ namespace ChitChat.Views
 
             if (res.Status == false)
             {
-                await DisplayAlert("Error", res.Response + "Please try again.", "OK");
+                if (res.Response.Contains("The email address is badly formatted"))
+                {
+                    EmailFrame.BorderColor = Color.Red;
+                }
+                await DisplayAlert("Sign up Failed", res.Response + ". Please try again.", "OK");
+                return;
             }
 
             try
@@ -135,9 +140,11 @@ namespace ChitChat.Views
                 await DisplayAlert("Success", res.Response + ".", "OK");
             } catch (Exception ex)
             {
-                await DisplayAlert("Error", "Sign up successful. Verification email sent.", "OK");
+                await DisplayAlert("Sign up Failed", res.Response + ". Please try again.", "OK");
+                return;
             }
 
+            await DisplayAlert("Sign up Failed", "Sign up successful. Verification email sent.", "OK");
             //setloading = false
             //await DisplayAlert("Success", "Sign up successful. Verification email sent.", "OK");
             LoginProceed();

@@ -1,4 +1,5 @@
-# ChitChat-Barriga-Tumapon
-Contributors
+# ChitChat
+
+# Contributors
 Barriga, Horeb
 Tumapon, Nikolai Franz

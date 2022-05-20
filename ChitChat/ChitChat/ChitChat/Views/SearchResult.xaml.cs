@@ -38,7 +38,7 @@ namespace ChitChat.Views
 
         protected override async void OnAppearing()
         {
-            LoadUsers();
+            await LoadUsers();
             base.OnAppearing();
         }
 
@@ -139,6 +139,7 @@ namespace ChitChat.Views
                         .UpdateAsync(new { contacts = select.contacts });
 
                     await DisplayAlert("Success", "Contact added!", "OK");
+                    await LoadUsers();
                 }
             }
             catch (NullReferenceException ex)

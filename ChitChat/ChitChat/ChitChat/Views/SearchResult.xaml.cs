@@ -129,7 +129,7 @@ namespace ChitChat.Views
                     }
 
                     //add to existing or new contact list (inside dataclass)
-                    select.contacts.Add(select.uid);
+                    select.contacts.Add(dataClass.loggedInUser.uid);
 
                     //update contactlist of selected user in firebase with updated list
                     await CrossCloudFirestore.Current

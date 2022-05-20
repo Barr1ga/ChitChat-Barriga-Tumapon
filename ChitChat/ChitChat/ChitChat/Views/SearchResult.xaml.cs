@@ -36,6 +36,12 @@ namespace ChitChat.Views
             BindingContext = this;
         }
 
+        protected override async void OnAppearing()
+        {
+            LoadUsers();
+            base.OnAppearing();
+        }
+
         public async Task LoadUsers()
         {
             DataClass dataClass = DataClass.GetInstance;

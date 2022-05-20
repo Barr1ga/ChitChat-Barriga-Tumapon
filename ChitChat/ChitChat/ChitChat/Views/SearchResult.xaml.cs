@@ -136,7 +136,7 @@ namespace ChitChat.Views
                         .Instance
                         .Collection("users")
                         .Document(select.uid)
-                        .UpdateAsync(new { contacts = dataClass.loggedInUser.contacts });
+                        .UpdateAsync(new { contacts = select.contacts });
 
                     await DisplayAlert("Success", "Contact added!", "OK");
                 }
